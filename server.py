@@ -20,9 +20,24 @@ SCHEMA_PATH = os.path.join(BASE_DIR, "database", "schema.sql")
 
 
 def get_db():
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30.0)
     conn.row_factory = sqlite3.Row
+    try:
+        conn.execute("PRAGMA busy_timeout = 30000")
+    except Exception:
+        pass
     return conn
+
+
+def init_db_settings():
+    try:
+        conn = sqlite3.connect(DB_PATH, timeout=30.0)
+        conn.execute("PRAGMA journal_mode = WAL")
+        conn.execute("PRAGMA synchronous = NORMAL")
+        conn.commit()
+        conn.close()
+    except Exception as e:
+        print(f"[!] Warning init WAL mode: {e}")
 
 
 def export_sql():
@@ -91,6 +106,7 @@ def get_all_data():
             "kopBorderType": row["kop_border_type"] or "double-emerald",
             "signatureHeadmaster": row["signature_headmaster"] or "",
             "stampImage": row["stamp_image"] or "",
+            "updatedAt": row["updated_at"] or "",
         }
 
     # Santri
@@ -678,6 +694,7 @@ class TPQRequestHandler(http.server.SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
+    init_db_settings()
     print(f"[*] Menjalankan Server Web & SQL API TPQ Muslimat NU Al-Ikhlas pada port {PORT}...")
     server = http.server.HTTPServer(("", PORT), TPQRequestHandler)
     print(f"[OK] Server aktif di: http://localhost:{PORT}/")

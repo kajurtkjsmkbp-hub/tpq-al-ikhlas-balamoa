@@ -48,7 +48,8 @@ const DEFAULT_STORE = {
     kopLogoLayout: 'both', // both (kiri & kanan) | left (kiri saja) | right (kanan saja) | none (tanpa logo)
     kopBorderType: 'double-emerald', // double-emerald | double-black | triple-gold | solid-green
     signatureHeadmaster: '', // Data URL tanda tangan Kepala TPQ
-    stampImage: '' // Data URL stempel lembaga
+    stampImage: '', // Data URL stempel lembaga
+    updatedAt: '' // Timestamp perubahan terakhir
   },
 
   formulirConfig: {
@@ -1084,30 +1085,38 @@ async function loadStoreFromSqlBackend() {
         
         // Merge seamlessly
         if (sqlData.institution && Object.keys(sqlData.institution).length > 0) {
-          const mergedInst = Object.assign({}, current.institution, sqlData.institution);
-          // Pertahankan logo dan tanda tangan/stempel lokal jika backend SQL masih kosong
-          if (!sqlData.institution.logoLeft && current.institution.logoLeft) {
-            mergedInst.logoLeft = current.institution.logoLeft;
-            mergedInst.logoLeftType = current.institution.logoLeftType || 'custom';
-          }
-          if (!sqlData.institution.logoRight && current.institution.logoRight) {
-            mergedInst.logoRight = current.institution.logoRight;
-            mergedInst.logoRightType = current.institution.logoRightType || 'custom';
-          }
-          if (!sqlData.institution.signatureHeadmaster && current.institution.signatureHeadmaster) {
-            mergedInst.signatureHeadmaster = current.institution.signatureHeadmaster;
-          }
-          if (!sqlData.institution.stampImage && current.institution.stampImage) {
-            mergedInst.stampImage = current.institution.stampImage;
-          }
-          current.institution = mergedInst;
+          const localTime = new Date(current.institution.updatedAt || 0).getTime();
+          const sqlTime = new Date(sqlData.institution.updatedAt || 0).getTime();
 
-          // Jika lokal memiliki logo kustom tapi backend belum, sinkronkan otomatis ke SQL
-          if ((current.institution.logoLeft && !sqlData.institution.logoLeft) ||
-              (current.institution.logoRight && !sqlData.institution.logoRight) ||
-              (current.institution.signatureHeadmaster && !sqlData.institution.signatureHeadmaster) ||
-              (current.institution.stampImage && !sqlData.institution.stampImage)) {
+          // Jika data lokal browser lebih baru dan telah diedit pengguna, pertahankan data lokal dan sinkronkan ke server
+          if (localTime > sqlTime && (current.institution.address !== DEFAULT_STORE.institution.address || current.institution.name !== DEFAULT_STORE.institution.name || current.institution.logoLeft || current.institution.logoRight)) {
             syncToSqlBackend('/api/institution', 'POST', current.institution);
+          } else {
+            const mergedInst = Object.assign({}, current.institution, sqlData.institution);
+            // Pertahankan logo dan tanda tangan/stempel lokal jika backend SQL masih kosong
+            if (!sqlData.institution.logoLeft && current.institution.logoLeft) {
+              mergedInst.logoLeft = current.institution.logoLeft;
+              mergedInst.logoLeftType = current.institution.logoLeftType || 'custom';
+            }
+            if (!sqlData.institution.logoRight && current.institution.logoRight) {
+              mergedInst.logoRight = current.institution.logoRight;
+              mergedInst.logoRightType = current.institution.logoRightType || 'custom';
+            }
+            if (!sqlData.institution.signatureHeadmaster && current.institution.signatureHeadmaster) {
+              mergedInst.signatureHeadmaster = current.institution.signatureHeadmaster;
+            }
+            if (!sqlData.institution.stampImage && current.institution.stampImage) {
+              mergedInst.stampImage = current.institution.stampImage;
+            }
+            current.institution = mergedInst;
+
+            // Jika lokal memiliki logo kustom tapi backend belum, sinkronkan otomatis ke SQL
+            if ((current.institution.logoLeft && !sqlData.institution.logoLeft) ||
+                (current.institution.logoRight && !sqlData.institution.logoRight) ||
+                (current.institution.signatureHeadmaster && !sqlData.institution.signatureHeadmaster) ||
+                (current.institution.stampImage && !sqlData.institution.stampImage)) {
+              syncToSqlBackend('/api/institution', 'POST', current.institution);
+            }
           }
         }
         if (sqlData.santri && sqlData.santri.length > 0) {

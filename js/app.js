@@ -2152,6 +2152,7 @@ function saveProfilForm(e) {
   store.institution.city = document.getElementById("prof-city").value.trim();
   store.institution.phone = document.getElementById("prof-phone").value.trim();
   store.institution.method = document.getElementById("prof-method").value.trim();
+  store.institution.updatedAt = new Date().toISOString();
 
   saveAppStore(store);
   syncToSqlBackend('/api/institution', 'POST', store.institution);
@@ -2796,6 +2797,7 @@ function handleLogoUpload(event, targetProp) {
     store.institution[targetProp] = dataUrl;
     if (targetProp === 'logoLeft') store.institution.logoLeftType = 'custom';
     if (targetProp === 'logoRight') store.institution.logoRightType = 'custom';
+    store.institution.updatedAt = new Date().toISOString();
     saveAppStore(store);
     syncToSqlBackend('/api/institution', 'POST', store.institution);
     showToast("Gambar berhasil diunggah & disimpan permanen ke database!");
@@ -2808,6 +2810,7 @@ function clearCustomLogo(targetProp) {
   store.institution[targetProp] = "";
   if (targetProp === 'logoLeft') store.institution.logoLeftType = 'preset';
   if (targetProp === 'logoRight') store.institution.logoRightType = 'preset';
+  store.institution.updatedAt = new Date().toISOString();
   saveAppStore(store);
   syncToSqlBackend('/api/institution', 'POST', store.institution);
   showToast("Logo dikembalikan ke simbol preset default.");
@@ -2820,6 +2823,7 @@ function setLogoPreset(targetProp, preset) {
   store.institution[targetProp + "Preset"] = preset;
   if (targetProp === 'logoLeft') store.institution.logoLeftType = 'preset';
   if (targetProp === 'logoRight') store.institution.logoRightType = 'preset';
+  store.institution.updatedAt = new Date().toISOString();
   saveAppStore(store);
   syncToSqlBackend('/api/institution', 'POST', store.institution);
   renderDataInputView();
@@ -2828,6 +2832,7 @@ function setLogoPreset(targetProp, preset) {
 function clearSignature() {
   const store = getAppStore();
   store.institution.signatureHeadmaster = "";
+  store.institution.updatedAt = new Date().toISOString();
   saveAppStore(store);
   syncToSqlBackend('/api/institution', 'POST', store.institution);
   showToast("Tanda tangan digital dihapus.");
@@ -2837,6 +2842,7 @@ function clearSignature() {
 function clearStamp() {
   const store = getAppStore();
   store.institution.stampImage = "";
+  store.institution.updatedAt = new Date().toISOString();
   saveAppStore(store);
   syncToSqlBackend('/api/institution', 'POST', store.institution);
   showToast("Cap stempel dihapus.");
@@ -2846,6 +2852,7 @@ function clearStamp() {
 function setKopLogoLayout(layout) {
   const store = getAppStore();
   store.institution.kopLogoLayout = layout;
+  store.institution.updatedAt = new Date().toISOString();
   saveAppStore(store);
   syncToSqlBackend('/api/institution', 'POST', store.institution);
   renderDataInputView();
@@ -2887,6 +2894,7 @@ function saveKopForm(e) {
     }
   }
 
+  store.institution.updatedAt = new Date().toISOString();
   saveAppStore(store);
   syncToSqlBackend('/api/institution', 'POST', store.institution);
   showToast("Pengaturan KOP Surat berhasil disimpan permanen ke database!");
@@ -2911,6 +2919,7 @@ function saveKepalaForm(e) {
   store.institution.secretary = document.getElementById("head-secretary").value.trim();
   store.institution.treasurer = document.getElementById("head-treasurer").value.trim();
 
+  store.institution.updatedAt = new Date().toISOString();
   saveAppStore(store);
   syncToSqlBackend('/api/institution', 'POST', store.institution);
   showToast("Data Kepala TPQ & Pimpinan berhasil diperbarui ke database!");
