@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Akreditasi TPQ Muslimat NU AL-IKHLAS | Yayasan AL FATAH</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            nu: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              300: '#86efac',
+              400: '#4ade80',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#0e6938',
+              900: '#0b532c',
+              950: '#052e17',
+            },
+            gold: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/custom.css">
+  
+  <!-- Favicon / Icon representation -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%230e6938'/><text y='65' font-size='50' x='50' text-anchor='middle' fill='%23fbbf24'>📖</text></svg>">
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 flex flex-col font-sans antialiased">
+
+  <!-- TOP BAR HIJAU NU / BRANDING HEADER -->
+  <header class="bg-gradient-to-r from-nu-900 via-nu-800 to-nu-950 text-white shadow-lg sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between py-3.5 border-b border-nu-700/60">
+        <!-- Logo & Identitas Lembaga -->
+        <div class="flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-nu-700 to-nu-900 border-2 border-gold-400/80 flex items-center justify-center shadow-md shrink-0">
+            <!-- Lambang Al-Qur'an & Bintang 9 Nuansa Muslimat NU -->
+            <svg class="w-7 h-7 text-gold-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 rounded bg-nu-700/80 text-gold-300 border border-gold-500/30">
+                Sistem Penjaminan Mutu & Akreditasi
+              </span>
+              <span id="sql-db-badge" class="inline-flex items-center gap-1.5 text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-emerald-950/80 text-emerald-300 border border-emerald-500/50 shadow-sm cursor-pointer hover:bg-emerald-900 transition" title="Memeriksa status basis data SQL...">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Database SQL: SQLite Aktif</span>
+              </span>
+              <span class="text-[10px] text-nu-200 hidden sm:inline">• Yayasan AL FATAH</span>
+            </div>
+            <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-white flex items-center gap-2">
+              TPQ MUSLIMAT NU AL-IKHLAS
+            </h1>
+            <p class="text-[11px] text-nu-100 hidden sm:block">
+              Lembaga Pendidikan Al-Qur'an • Berakidah Ahlussunnah wal Jama'ah An-Nahdliyah
+            </p>
+          </div>
+        </div>
+
+        <!-- Tombol Aksi Cepat Header -->
+        <div class="flex items-center gap-2">
+          <!-- Tombol Cetak Dokumen Fisik Asli -->
+          <a href="dokumen_cetak_fisik/PAKET_LENGKAP_SEMUA_DOKUMEN_AKREDITASI_SIAP_CETAK.html" target="_blank" class="btn-action inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-gold-400 hover:bg-gold-300 text-slate-950 transition shadow-sm">
+            <svg class="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+            <span>🖨️ Cetak Berkas Fisik A4</span>
+          </a>
+
+          <!-- Tombol Cetak Rekap -->
+          <button onclick="window.print()" class="btn-action inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 transition">
+            <svg class="w-4 h-4 text-gold-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span class="hidden md:inline">Cetak Rekap</span>
+          </button>
+
+          <!-- Ekspor CSV -->
+          <button onclick="exportDataCSV()" class="btn-action inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 transition">
+            <svg class="w-4 h-4 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span class="hidden md:inline">Ekspor CSV</span>
+          </button>
+
+          <!-- Backup / Cadangan Dropdown -->
+          <div class="relative group">
+            <button class="btn-action inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-gold-500 hover:bg-gold-600 text-slate-950 transition shadow-sm font-bold">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+              <span>Database & Backup</span>
+            </button>
+            <div class="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-slate-200 py-2 hidden group-hover:block z-50 text-slate-800 text-xs">
+              <!-- SQLite & SQL Database Options -->
+              <div class="px-4 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider">Basis Data SQL Permanen</div>
+              <button onclick="syncFullStoreToSql(true)" class="w-full text-left px-4 py-2 hover:bg-emerald-50 text-emerald-800 font-semibold flex items-center gap-2">
+                <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                <span>Simpan/Sinkron ke SQL</span>
+              </button>
+              <a href="database/tpq_alikhlas.sql" download="tpq_alikhlas.sql" class="w-full text-left px-4 py-2 hover:bg-slate-100 flex items-center gap-2">
+                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                <span>Unduh Script SQL (.sql)</span>
+              </a>
+              <a href="database/tpq_alikhlas.db" download="tpq_alikhlas.db" class="w-full text-left px-4 py-2 hover:bg-slate-100 flex items-center gap-2">
+                <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
+                <span>Unduh File SQLite (.db)</span>
+              </a>
+              <div class="border-t border-slate-100 my-1"></div>
+              <div class="px-4 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider">Cadangan JSON</div>
+              <button onclick="exportDataJSON()" class="w-full text-left px-4 py-2 hover:bg-slate-100 flex items-center gap-2">
+                <svg class="w-4 h-4 text-nu-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                <span>Unduh Cadangan JSON</span>
+              </button>
+              <label class="w-full text-left px-4 py-2 hover:bg-slate-100 flex items-center gap-2 cursor-pointer">
+                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                <span>Pulihkan dari JSON</span>
+                <input type="file" accept=".json" onchange="importDataJSON(event)" class="hidden">
+              </label>
+              <div class="border-t border-slate-100 my-1"></div>
+              <button onclick="resetAllData()" class="w-full text-left px-4 py-2 hover:bg-red-50 text-red-600 flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                <span>Reset ke Default</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigasi Tab Menu Utama -->
+      <nav class="flex space-x-1 sm:space-x-2 overflow-x-auto py-2.5 text-xs font-medium no-scrollbar">
+        <button id="nav-btn-checklist" onclick="switchTab('checklist')" class="px-3.5 py-2 rounded-xl transition whitespace-nowrap text-nu-950 bg-gold-400 font-bold flex items-center gap-1.5 shadow-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+          <span>Daftar Cek Dokumen</span>
+        </button>
+
+        <button id="nav-btn-documents" onclick="switchTab('documents')" class="px-3.5 py-2 rounded-xl transition whitespace-nowrap text-nu-100 hover:text-white hover:bg-white/10 flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <span>Dokumen & Preview Resmi</span>
+        </button>
+
+        <button id="nav-btn-data-input" onclick="switchTab('data-input')" class="px-3.5 py-2 rounded-xl transition whitespace-nowrap text-nu-100 hover:text-white hover:bg-white/10 flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+          <span>Kelola Data & Inputan</span>
+        </button>
+
+        <button id="nav-btn-standards" onclick="switchTab('standards')" class="px-3.5 py-2 rounded-xl transition whitespace-nowrap text-nu-100 hover:text-white hover:bg-white/10 flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          <span>8 Standar Nasional (SNP)</span>
+        </button>
+
+        <button id="nav-btn-assessment" onclick="switchTab('assessment')" class="px-3.5 py-2 rounded-xl transition whitespace-nowrap text-nu-100 hover:text-white hover:bg-white/10 flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          <span>Simulasi Skor & Asesmen</span>
+        </button>
+
+        <button id="nav-btn-odner" onclick="switchTab('odner')" class="px-3.5 py-2 rounded-xl transition whitespace-nowrap text-nu-100 hover:text-white hover:bg-white/10 flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
+          <span>Panduan Box Odner</span>
+        </button>
+
+        <button id="nav-btn-profil" onclick="switchTab('profil')" class="px-3.5 py-2 rounded-xl transition whitespace-nowrap text-nu-100 hover:text-white hover:bg-white/10 flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>Profil Lembaga</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PRINT-ONLY HEADER -->
+  <div class="print-only hidden p-4 border-b-2 border-emerald-900 mb-6 text-center">
+    <h1 class="text-xl font-bold uppercase tracking-wide">REKAPITULASI KESIAPAN DOKUMEN AKREDITASI</h1>
+    <h2 class="text-lg font-bold text-emerald-900">TPQ MUSLIMAT NU AL-IKHLAS</h2>
+    <p class="text-sm">Binaan Yayasan AL FATAH • Afiliasi Pimpinan Muslimat Nahdlatul Ulama</p>
+    <p class="text-xs text-slate-500 mt-1">Dicetak pada: <span id="print-date">Otomatis Terverifikasi</span></p>
+  </div>
+
+  <!-- HERO DASHBOARD RINGKASAN PROGRESS -->
+  <section class="no-print bg-white border-b border-slate-200 py-6 sm:py-8 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <!-- Info & Target -->
+        <div class="lg:col-span-5">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="text-xs font-semibold text-emerald-800 uppercase tracking-wider">Status Akreditasi Menuju Visitasi</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-tight">
+            Kesiapan Berkas & Bukti Fisik Akreditasi
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+            Panduan lengkap pemenuhan 8 Standar Mutu Pendidikan Al-Qur'an Kementerian Agama RI dan Lembaga Pembinaan Muslimat NU untuk <strong>TPQ Muslimat NU AL-IKHLAS</strong>.
+          </p>
+
+          <div class="mt-4 flex flex-wrap items-center gap-2">
+            <span id="stat-grade" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
+              Predikat: Memuat Data...
+            </span>
+            <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">
+              Target: <strong class="text-emerald-800">A (Unggul)</strong>
+            </span>
+            <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+              Metode: An-Nahdliyah / Qiraati
+            </span>
+          </div>
+        </div>
+
+        <!-- Metric Cards & Progress Tracker -->
+        <div class="lg:col-span-7">
+          <div class="bg-slate-50 border border-slate-200 rounded-3xl p-5 sm:p-6 shadow-inner">
+            <!-- Progress Bar Besar -->
+            <div class="flex items-center justify-between text-xs font-bold text-slate-700 mb-2">
+              <span class="flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-emerald-700" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                Kelengkapan Berkas Siap Visitasi
+              </span>
+              <span id="stat-percent" class="text-xl font-extrabold text-emerald-800">0%</span>
+            </div>
+            
+            <div class="w-full bg-slate-200 rounded-full h-3.5 mb-5 overflow-hidden p-0.5">
+              <div id="stat-progress-bar" class="bg-gradient-to-r from-emerald-600 to-nu-700 h-2.5 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+            </div>
+
+            <!-- Grid Counter Status -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div class="bg-white rounded-2xl p-3 border border-emerald-200 shadow-sm text-center">
+                <span class="text-[11px] font-bold text-emerald-700 block">Siap & Lengkap</span>
+                <span id="stat-ready-count" class="text-2xl font-black text-emerald-800 block my-0.5">0</span>
+                <span class="text-[10px] text-slate-400">Berkas Valid</span>
+              </div>
+
+              <div class="bg-white rounded-2xl p-3 border border-amber-200 shadow-sm text-center">
+                <span class="text-[11px] font-bold text-amber-700 block">Proses / Draf</span>
+                <span id="stat-process-count" class="text-2xl font-black text-amber-800 block my-0.5">0</span>
+                <span class="text-[10px] text-slate-400">Penyusunan</span>
+              </div>
+
+              <div class="bg-white rounded-2xl p-3 border border-red-200 shadow-sm text-center">
+                <span class="text-[11px] font-bold text-red-700 block">Belum Ada</span>
+                <span id="stat-missing-count" class="text-2xl font-black text-red-800 block my-0.5">0</span>
+                <span class="text-[10px] text-slate-400">Perlu Dibuat</span>
+              </div>
+
+              <div class="bg-white rounded-2xl p-3 border border-slate-200 shadow-sm text-center">
+                <span class="text-[11px] font-bold text-slate-600 block">Total Instrumen</span>
+                <span id="stat-total-count" class="text-2xl font-black text-slate-800 block my-0.5">48</span>
+                <span class="text-[10px] text-slate-400">Dokumen Standar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- VIEW 1: CHECKLIST TAB -->
+    <div id="view-checklist">
+      <!-- Toolbar Filter & Search -->
+      <div class="no-print bg-white rounded-2xl border border-slate-200 p-4 mb-6 shadow-sm">
+        <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+          <!-- Search Input -->
+          <div class="relative flex-1">
+            <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input type="text" id="search-input" placeholder="Cari nama berkas, nomor kode, IJOP, buku induk, syahadah..." class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white transition">
+          </div>
+
+          <!-- Quick Status Filter Buttons -->
+          <div class="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0">
+            <span class="text-xs font-semibold text-slate-500 mr-1 hidden sm:inline">Status:</span>
+            <button onclick="setStatusFilter('all')" data-status="all" class="status-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition ring-2 ring-emerald-600 font-bold">Semua</button>
+            <button onclick="setStatusFilter('ready')" data-status="ready" class="status-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold badge-ready hover:opacity-90 transition">Siap</button>
+            <button onclick="setStatusFilter('process')" data-status="process" class="status-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold badge-process hover:opacity-90 transition">Proses</button>
+            <button onclick="setStatusFilter('missing')" data-status="missing" class="status-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold badge-missing hover:opacity-90 transition">Belum Ada</button>
+          </div>
+        </div>
+
+        <!-- Category Horizontal Pills -->
+        <div class="mt-4 pt-3 border-t border-slate-100">
+          <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1" id="category-pills">
+            <!-- Dynamically rendered pills -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Checklist Items Container -->
+      <div id="checklist-container">
+        <!-- Dynamically rendered checklist items -->
+      </div>
+    </div>
+
+    <!-- VIEW 2: DOKUMEN & FULL PREVIEW RESMI TAB -->
+    <div id="view-documents" class="hidden">
+      <div id="documents-container">
+        <!-- Dynamically rendered documents catalog and live preview -->
+      </div>
+    </div>
+
+    <!-- VIEW 3: MENU KELOLA DATA & INPUTAN (CRUD) TAB -->
+    <div id="view-data-input" class="hidden">
+      <div id="data-input-container">
+        <!-- Dynamically rendered sub-tabs for santri, ustadz, sarpras, kas, and profil -->
+      </div>
+    </div>
+
+    <!-- VIEW 4: 8 STANDAR NASIONAL (SNP) TAB -->
+    <div id="view-standards" class="hidden">
+      <div id="standards-container">
+        <!-- Dynamically rendered standards view -->
+      </div>
+    </div>
+
+    <!-- VIEW 5: SIMULASI SKOR & EVALUASI DIRI (EDL) TAB -->
+    <div id="view-assessment" class="hidden">
+      <div id="assessment-container">
+        <!-- Dynamically rendered assessment view -->
+      </div>
+    </div>
+
+    <!-- VIEW 6: PANDUAN BOX ODNER & VISITASI TAB -->
+    <div id="view-odner" class="hidden">
+      <div id="odner-container">
+        <!-- Dynamically rendered odner boxes & room protocol -->
+      </div>
+    </div>
+
+    <!-- VIEW 6: PROFIL LEMBAGA & STANDAR AKREDITASI TAB -->
+    <div id="view-profil" class="hidden">
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm mb-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div class="max-w-2xl">
+            <span class="text-xs font-bold text-nu-700 uppercase tracking-widest px-2.5 py-1 rounded bg-nu-50 border border-nu-200 inline-block mb-2">Identitas Satuan Pendidikan</span>
+            <h2 class="text-2xl font-black text-slate-900 tracking-tight">Profil Resmi TPQ Muslimat NU AL-IKHLAS</h2>
+            <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+              Taman Pendidikan Al-Qur'an (TPQ) Muslimat NU AL-IKHLAS didirikan sebagai wadah pembinaan generasi qur'ani yang memiliki akhlakul karimah, ketepatan membaca sesuai kaidah ilmu tajwid, serta berpegang teguh pada amaliyah Islam Ahlussunnah wal Jama'ah An-Nahdliyah.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2 shrink-0">
+            <button onclick="switchTab('data-input'); switchInputSubTab('kop');" class="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+              <svg class="w-4 h-4 text-gold-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              <span>Edit KOP & Logo</span>
+            </button>
+            <button onclick="switchTab('data-input'); switchInputSubTab('kepala');" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+              <svg class="w-4 h-4 text-gold-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+              <span>Edit Kepala TPQ</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          <div>
+            <h3 class="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
+              <svg class="w-4 h-4 text-nu-700" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 00-1 1v1a1 1 0 002 0V3a1 1 0 00-1-1zM4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h6a1 1 0 100-2H7zm0 4a1 1 0 100 2h3a1 1 0 100-2H7z" clip-rule="evenodd"/></svg>
+              Data Umum Kelembagaan
+            </h3>
+            <table class="w-full text-xs text-slate-700">
+              <tr class="border-b border-slate-100">
+                <td class="py-2.5 font-semibold text-slate-500 w-40">Nama Lembaga</td>
+                <td class="py-2.5 font-bold text-slate-900">TPQ MUSLIMAT NU AL-IKHLAS</td>
+              </tr>
+              <tr class="border-b border-slate-100">
+                <td class="py-2.5 font-semibold text-slate-500">Yayasan Pengampu</td>
+                <td class="py-2.5 font-bold text-nu-800">YAYASAN AL FATAH</td>
+              </tr>
+              <tr class="border-b border-slate-100">
+                <td class="py-2.5 font-semibold text-slate-500">Afiliasi Ormas</td>
+                <td class="py-2.5">Pimpinan Muslimat Nahdlatul Ulama</td>
+              </tr>
+              <tr class="border-b border-slate-100">
+                <td class="py-2.5 font-semibold text-slate-500">Metode Pengajaran</td>
+                <td class="py-2.5">Metode An-Nahdliyah / Qiraati / Yanbu'a</td>
+              </tr>
+              <tr class="border-b border-slate-100">
+                <td class="py-2.5 font-semibold text-slate-500">Target Akreditasi</td>
+                <td class="py-2.5 font-bold text-emerald-700">Nilai A (Unggul / Sangat Baik)</td>
+              </tr>
+            </table>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
+              <svg class="w-4 h-4 text-nu-700" fill="currentColor" viewBox="0 0 20 20"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a10.99 10.99 0 00-.25 2.572c0 2.87 1.34 5.378 3.4 6.942l.6.458a1 1 0 001.2 0l.6-.458c2.06-1.564 3.4-4.072 3.4-6.942 0-.89-.09-1.75-.25-2.572l2.644-1.131a1 1 0 000-1.84l-7-3zM9 13.9a7.002 7.002 0 01-2-5.46V7.32l3 1.286 3-1.286v1.12a7.002 7.002 0 01-2 5.46z"/></svg>
+              Visi & Misi Lembaga
+            </h3>
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs text-slate-700 space-y-3">
+              <div>
+                <strong class="text-nu-900 block mb-0.5">VISI:</strong>
+                <p class="italic">"Terwujudnya Generasi Qur'ani yang Tartil, Cerdas, Berakhlak Mulia, dan Teguh Mengamalkan Ajaran Islam Ahlussunnah wal Jama'ah An-Nahdliyah."</p>
+              </div>
+              <div>
+                <strong class="text-nu-900 block mb-0.5">MISI:</strong>
+                <ul class="list-disc pl-4 space-y-1">
+                  <li>Menyelenggarakan pembelajaran membaca Al-Qur'an secara tartil dengan kaidah tajwid yang benar.</li>
+                  <li>Membiasakan santri dengan amaliyah harian: sholat berjamaah, doa qunut, hafalan doa & sholawat Nabi.</li>
+                  <li>Membentuk karakter santri yang berbakti kepada orang tua, guru, dan cinta tanah air.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 Pilar Standar Tambahan yang Disempurnakan -->
+        <div class="mt-8 pt-6 border-t border-slate-100">
+          <h3 class="text-sm font-bold text-slate-900 mb-4">Penyempurnaan Dokumen Berdasarkan Standar Akreditasi Kemenag & Muslimat NU:</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs text-slate-700">
+            <div class="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200">
+              <strong class="text-emerald-900 block mb-1">1. Sinkronisasi EMIS Kemenag</strong>
+              <p>Buku induk dan data ustadzah wajib tersinkron dengan database EMIS Pendis Kemenag untuk mendapatkan akreditasi valid.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-blue-50/70 border border-blue-200">
+              <strong class="text-blue-900 block mb-1">2. Syahadah Kelayakan Guru</strong>
+              <p>Minimal 70% ustadz/ustadzah memegang syahadah resmi kelulusan metode pengajaran Al-Qur'an yang diakui.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-teal-50/70 border border-teal-200">
+              <strong class="text-teal-900 block mb-1">3. Ciri Khas Aswaja An-Nahdliyah</strong>
+              <p>Materi hafalan Doa Qunut Subuh, wirid ba'da sholat, Sholawat Tibbil Qulub & Nahdliyyah, serta peringatan Hari Santri Nasional.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-purple-50/70 border border-purple-200">
+              <strong class="text-purple-900 block mb-1">4. Penjaminan Mutu & SOP Tertulis</strong>
+              <p>Standar operasional pembelajaran (SOP KBM 90 menit), SOP penerimaan santri, dan tata tertib tertulis yang ditandatangani wali.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-amber-50/70 border border-amber-200">
+              <strong class="text-amber-900 block mb-1">5. Kemitraan Komite & Wali Santri</strong>
+              <p>Adanya SK Komite Wali Santri dan keterlibatan aktif wali santri dalam program evaluasi dan pengembangan fasilitas belajar.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-rose-50/70 border border-rose-200">
+              <strong class="text-rose-900 block mb-1">6. Kepastian Hak Pakai Lahan/Gedung</strong>
+              <p>Salinan Akta Ikrar Wakaf (AIW) / Perjanjian Pinjam Pakai Gedung yang sah untuk menjamin stabilitas kegiatan jangka panjang.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL DETAIL DOKUMEN & CATATAN -->
+  <div id="doc-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-start justify-between gap-3 pb-3 border-b border-slate-100">
+          <div>
+            <span id="modal-code" class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">Kode</span>
+            <h3 id="modal-title" class="text-base font-bold text-slate-900 mt-1">Judul Dokumen</h3>
+          </div>
+          <button onclick="closeDocModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div class="py-4 space-y-4 text-xs">
+          <!-- Deskripsi Dokumen -->
+          <div>
+            <span class="font-bold text-slate-500 uppercase tracking-wider block mb-1">Deskripsi Dokumen:</span>
+            <p id="modal-desc" class="text-slate-700 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-100"></p>
+          </div>
+
+          <!-- Format Fisik & Bobot -->
+          <div class="grid grid-cols-2 gap-3">
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+              <span class="font-bold text-slate-500 block mb-0.5">Format Fisik Berkas:</span>
+              <span id="modal-physical" class="font-semibold text-slate-800"></span>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+              <span class="font-bold text-slate-500 block mb-0.5">Penilaian Asesor:</span>
+              <span id="modal-weight" class="font-semibold text-emerald-800"></span>
+            </div>
+          </div>
+
+          <!-- Catatan Asesor & Tips Kemenag -->
+          <div class="bg-amber-50 rounded-xl p-3 border border-amber-200 text-amber-900">
+            <span class="font-bold flex items-center gap-1.5 mb-1">
+              <svg class="w-4 h-4 text-amber-700" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+              Kriteria Verifikasi Asesor:
+            </span>
+            <p id="modal-assessor" class="leading-relaxed"></p>
+          </div>
+
+          <!-- Checkpoints / Komponen Wajib Ada -->
+          <div>
+            <span class="font-bold text-slate-500 uppercase tracking-wider block mb-2">Komponen / Syarat yang Harus Ada:</span>
+            <ul id="modal-checkpoints" class="space-y-1.5 pl-1">
+              <!-- Rendered check items -->
+            </ul>
+          </div>
+
+          <!-- Form Edit Status & Catatan Lembaga -->
+          <div class="pt-3 border-t border-slate-100 space-y-3">
+            <div>
+              <label class="font-bold text-slate-700 block mb-1">Status Kesiapan Dokumen:</label>
+              <select id="modal-status-select" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:ring-2 focus:ring-emerald-600 focus:outline-none">
+                <option value="ready">✅ Siap & Terverifikasi Lengkap</option>
+                <option value="process">⏳ Sedang Dalam Proses / Penyusunan Draf</option>
+                <option value="missing">❌ Belum Ada / Harus Segera Dibuat</option>
+                <option value="na">⚪ N/A (Tidak Berlaku)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="font-bold text-slate-700 block mb-1">Catatan Tambahan Pengurus TPQ (Lokasi Map, Penanggung Jawab, dll):</label>
+              <textarea id="modal-notes-input" rows="2" placeholder="Contoh: Berkas asli di lemari arsip 2, fotokopi sudah masuk Map Odner 1..." class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-600 focus:outline-none"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
+        <button onclick="closeDocModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition">Batal</button>
+        <button onclick="saveDocModal()" class="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-semibold transition flex items-center gap-1.5 shadow-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span>Simpan Perubahan</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL TEMPLATE VIEWER & COPY/PRINT -->
+  <div id="template-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-start justify-between gap-3 pb-3 border-b border-slate-100">
+          <div>
+            <span id="tpl-modal-code" class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200"></span>
+            <h3 id="tpl-modal-title" class="text-base font-bold text-slate-900 mt-1">Draf Template Resmi</h3>
+          </div>
+          <button onclick="closeTemplateModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div class="py-4">
+          <div class="bg-slate-900 text-slate-100 rounded-2xl p-4 font-mono text-xs overflow-x-auto max-h-96">
+            <pre id="tpl-modal-content" class="whitespace-pre-wrap"></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+        <button onclick="closeTemplateModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition">Tutup</button>
+        <div class="flex items-center gap-2">
+          <button onclick="copyTemplateContent()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-semibold transition flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+            <span>Salin Teks</span>
+          </button>
+          <button onclick="printTemplateContent()" class="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-semibold transition flex items-center gap-1.5 shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+            <span>Cetak Template</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL FORM INPUT CRUD (SANTRI / USTADZ / INVENTARIS / KAS) -->
+  <div id="form-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-start justify-between gap-3 pb-3 border-b border-slate-100 mb-4">
+          <h3 id="form-modal-title" class="text-base font-bold text-slate-900">Form Input Data</h3>
+          <button onclick="closeFormModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div id="form-modal-body" class="py-2">
+          <!-- Dynamic form fields -->
+        </div>
+      </div>
+
+      <div class="pt-4 border-t border-slate-100 flex items-center justify-end gap-2 mt-4">
+        <button onclick="closeFormModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition">Batal</button>
+        <button id="form-modal-save" class="px-5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span>Simpan Data</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="notification-toast" class="fixed bottom-6 right-6 z-50 transform transition-all duration-300 opacity-0 translate-y-4 pointer-events-none">
+    <div class="bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-xl flex items-center gap-2.5 text-xs font-medium border border-slate-700">
+      <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+      <span id="toast-message">Operasi berhasil dilakukan!</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="no-print bg-nu-950 text-white mt-12 border-t border-nu-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-nu-800 border border-gold-500/40 flex items-center justify-center text-gold-400 font-bold">
+            NU
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-white">TPQ MUSLIMAT NU AL-IKHLAS</h4>
+            <p class="text-xs text-nu-200">Binaan YAYASAN AL FATAH • Menuju Akreditasi Unggul (A)</p>
+          </div>
+        </div>
+
+        <div class="text-xs text-nu-300">
+          <p>Portal Pedoman & Instrumen Standar Akreditasi Pendidikan Al-Qur'an.</p>
+          <p class="text-[11px] text-nu-400 mt-0.5">Berpedoman pada Regulasi Dirjen Pendis Kemenag RI & LPPTQ Muslimat NU.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT DATA & APP -->
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/full_documents.js"></script>
+  <script src="js/templates.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Set auto print date
+    const d = new Date();
+    const dateStr = d.toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    const printDateEl = document.getElementById('print-date');
+    if (printDateEl) printDateEl.innerText = dateStr;
+  </script>
+</body>
+</html>

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>ODNER 5 : SARPRAS, KAS, ASWAJA & KOMITE - TPQ MUSLIMAT NU AL-IKHLAS</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 12mm 15mm;
+    }
+    @page landscapeSection {
+      size: A4 landscape;
+      margin: 10mm 12mm;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      margin: 0;
+      padding: 0;
+      background: #e2e8f0;
+      color: #0f172a;
+      font-size: 10pt;
+      line-height: 1.35;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .print-sheet {
+      background: white;
+      width: 210mm;
+      min-height: 297mm;
+      margin: 20px auto;
+      padding: 13mm 15mm;
+      box-sizing: border-box;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+      border-radius: 4px;
+      page-break-after: always;
+      break-after: page;
+      position: relative;
+    }
+    .print-sheet.landscape {
+      page: landscapeSection;
+      width: 297mm;
+      min-height: 210mm;
+      padding: 10mm 12mm;
+    }
+    @media print {
+      body {
+        background: white !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .print-sheet {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        page-break-after: always !important;
+        break-after: page !important;
+      }
+      .print-sheet:last-child {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+    .kop {
+      border-bottom: 3px double #0f172a;
+      padding-bottom: 6px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+    }
+    .kop-logo {
+      width: 52px;
+      height: 52px;
+      border: 1.5px solid #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 13pt;
+      border-radius: 8px;
+    }
+    .kop-mid {
+      flex: 1;
+      padding: 0 10px;
+    }
+    .kop-mid h4 {
+      margin: 0;
+      font-size: 10pt;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    .kop-mid h2 {
+      margin: 1px 0;
+      font-size: 13.5pt;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: #064e3b;
+    }
+    .kop-mid p {
+      margin: 1px 0;
+      font-size: 8pt;
+      color: #1e293b;
+    }
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0;
+      font-size: 8.5pt;
+    }
+    table.data-table th, table.data-table td {
+      border: 1px solid #1e293b;
+      padding: 4px 6px;
+    }
+    table.data-table th {
+      background: #f1f5f9;
+      font-weight: bold;
+      text-align: center;
+    }
+    .ttd-box {
+      margin-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+      font-size: 9.5pt;
+      page-break-inside: avoid;
+    }
+    .ttd-col {
+      width: 44%;
+    }
+    .ttd-space {
+      height: 48px;
+    }
+    .doc-title {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .doc-title h3 {
+      margin: 0;
+      text-decoration: underline;
+      text-transform: uppercase;
+      font-size: 11pt;
+    }
+    .doc-title p {
+      margin: 2px 0 0;
+      font-size: 8.5pt;
+      font-weight: bold;
+      color: #334155;
+    }
+    .badge-status {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 7.5pt;
+      font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+  <div class="no-print" style="position: fixed; top: 15px; right: 15px; z-index: 999; background: #e11d48; padding: 10px 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.25);">
+    <button onclick="window.print()" style="background: #fbbf24; color: #000; border: none; padding: 8px 18px; font-weight: bold; font-size: 12pt; border-radius: 6px; cursor: pointer;">
+      🖨️ CETAK ODNER 5 (Ctrl + P)
+    </button>
+  </div>
+
+  <!-- DOKUMEN 5.1: LEMBAR VERIFIKASI ASESOR & BUKU INVENTARIS SARPRAS - LANDSCAPE -->
+  <div class="print-sheet landscape">
+    <div class="kop">
+      <div class="kop-logo">📖</div>
+      <div class="kop-mid">
+        <h4>YAYASAN AL FATAH</h4>
+        <h2>TPQ MUSLIMAT NU AL-IKHLAS</h2>
+        <p>Badan Hukum: AHU-0014285.AH.01.04.Tahun 2018 • NSQ: 411235150089 • SK IJOP: Kd.13.15/4/PP.00.7/1420/2024</p>
+        <p>Alamat: Jl. Masjid Al-Fatah No. 09, RT 03/RW 02, Sidokare, Kec. Sidoarjo, Kab. Sidoarjo, Jawa Timur (Kode Pos 61214) | Telp: (031) 8945672 / 0812-3245-8891</p>
+      </div>
+      <div class="kop-logo" style="font-size: 8.5pt; line-height: 1.1;">MUSLIMAT<br>NU</div>
+    </div>
+    <div class="doc-title">
+      <h3>BUKU BESAR INVENTARIS BARANG & SARANA PRASARANA</h3>
+      <p>ODNER 5 : STANDAR SARANA, PRASARANA, PEMBIAYAAN & KEKHASAN ASWAJA NU</p>
+    </div>
+
+    <table class="data-table" style="font-size: 8pt;">
+      <thead>
+        <tr>
+          <th style="width: 25px;">No</th>
+          <th style="width: 110px;">Kode Inventaris</th>
+          <th>Nama Barang / Aset Fisik Lembaga</th>
+          <th style="width: 110px;">Kategori Aset</th>
+          <th style="width: 60px;">Jumlah</th>
+          <th style="width: 55px;">Kondisi</th>
+          <th style="width: 125px;">Sumber Perolehan</th>
+          <th style="width: 115px;">Lokasi Barang</th>
+          <th style="width: 50px;">Tahun</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center;">1</td>
+          <td style="font-family: monospace; font-size: 7.5pt; text-align: center;">INV/TPQ/MEJ/001-030</td>
+          <td><strong>Meja Lipat Belajar Santri (Rekal Kayu Jati)</strong></td>
+          <td>Perabot Belajar</td>
+          <td style="text-align: center; font-weight: bold;">30 Unit</td>
+          <td style="text-align: center; color: #059669; font-weight: bold;">Baik</td>
+          <td>Wakaf Wali Santri</td>
+          <td>Ruang Belajar Utama</td>
+          <td style="text-align: center;">2024</td>
+        </tr>        <tr>
+          <td style="text-align: center;">2</td>
+          <td style="font-family: monospace; font-size: 7.5pt; text-align: center;">INV/TPQ/KRP/001-004</td>
+          <td><strong>Karpet Sajadah Tebal Permadani Hijau</strong></td>
+          <td>Perabot Belajar</td>
+          <td style="text-align: center; font-weight: bold;">4 Roll</td>
+          <td style="text-align: center; color: #059669; font-weight: bold;">Baik</td>
+          <td>Yayasan AL FATAH</td>
+          <td>Ruang Belajar Utama</td>
+          <td style="text-align: center;">2024</td>
+        </tr>        <tr>
+          <td style="text-align: center;">3</td>
+          <td style="font-family: monospace; font-size: 7.5pt; text-align: center;">INV/TPQ/PBL/001-003</td>
+          <td><strong>Papan Tulis Whiteboard Standar 120x240cm</strong></td>
+          <td>Media Ajar</td>
+          <td style="text-align: center; font-weight: bold;">3 Buah</td>
+          <td style="text-align: center; color: #059669; font-weight: bold;">Baik</td>
+          <td>Kas Mandiri TPQ</td>
+          <td>Ruang Belajar A & B</td>
+          <td style="text-align: center;">2023</td>
+        </tr>        <tr>
+          <td style="text-align: center;">4</td>
+          <td style="font-family: monospace; font-size: 7.5pt; text-align: center;">INV/TPQ/PRG/001-006</td>
+          <td><strong>Alat Peraga Klasikal Metode Al-Qur'an 1-6</strong></td>
+          <td>Media Ajar</td>
+          <td style="text-align: center; font-weight: bold;">6 Set</td>
+          <td style="text-align: center; color: #059669; font-weight: bold;">Baik</td>
+          <td>Kas Mandiri TPQ</td>
+          <td>Dinding Ruang Belajar</td>
+          <td style="text-align: center;">2024</td>
+        </tr>        <tr>
+          <td style="text-align: center;">5</td>
+          <td style="font-family: monospace; font-size: 7.5pt; text-align: center;">INV/TPQ/QUR/001-050</td>
+          <td><strong>Mushaf Al-Qur'an Standar Kemenag (Rasm Usmani)</strong></td>
+          <td>Media Ajar</td>
+          <td style="text-align: center; font-weight: bold;">50 Eks</td>
+          <td style="text-align: center; color: #059669; font-weight: bold;">Baik</td>
+          <td>Wakaf Kemenag & Donatur</td>
+          <td>Lemari Al-Qur'an</td>
+          <td style="text-align: center;">2024</td>
+        </tr>        <tr>
+          <td style="text-align: center;">6</td>
+          <td style="font-family: monospace; font-size: 7.5pt; text-align: center;">INV/TPQ/LMR/001-002</td>
+          <td><strong>Lemari Arsip Kaca & Rak Kitab Kayu</strong></td>
+          <td>Perabot Kantor</td>
+          <td style="text-align: center; font-weight: bold;">2 Unit</td>
+          <td style="text-align: center; color: #059669; font-weight: bold;">Baik</td>
+          <td>Yayasan AL FATAH</td>
+          <td>Kantor Pengurus</td>
+          <td style="text-align: center;">2023</td>
+        </tr>        <tr>
+          <td style="text-align: center;">7</td>
+          <td style="font-family: monospace; font-size: 7.5pt; text-align: center;">INV/TPQ/SND/001-002</td>
+          <td><strong>Sound System Portabel Wireless & Mic Clip-on</strong></td>
+          <td>Elektronik Audio</td>
+          <td style="text-align: center; font-weight: bold;">2 Set</td>
+          <td style="text-align: center; color: #059669; font-weight: bold;">Baik</td>
+          <td>Wakaf Komite Wali</td>
+          <td>Ruang Utama</td>
+          <td style="text-align: center;">2025</td>
+        </tr>        <tr>
+          <td style="text-align: center;">8</td>
+          <td style="font-family: monospace; font-size: 7.5pt; text-align: center;">INV/TPQ/KPS/001-004</td>
+          <td><strong>Kipas Angin Dinding Tornado Fan</strong></td>
+          <td>Elektronik Ruang</td>
+          <td style="text-align: center; font-weight: bold;">4 Unit</td>
+          <td style="text-align: center; color: #059669; font-weight: bold;">Baik</td>
+          <td>Yayasan AL FATAH</td>
+          <td>Ruang Belajar Utama</td>
+          <td style="text-align: center;">2024</td>
+        </tr>        <tr>
+          <td style="text-align: center;">9</td>
+          <td style="font-family: monospace; font-size: 7.5pt; text-align: center;">INV/TPQ/PLG/001</td>
+          <td><strong>Papan Nama Permanen TPQ Muslimat NU AL-IKHLAS</strong></td>
+          <td>Sarana Eksterior</td>
+          <td style="text-align: center; font-weight: bold;">1 Plang</td>
+          <td style="text-align: center; color: #059669; font-weight: bold;">Baik</td>
+          <td>Yayasan AL FATAH</td>
+          <td>Depan Pagar Gedung</td>
+          <td style="text-align: center;">2023</td>
+        </tr>        <tr>
+          <td style="text-align: center;">10</td>
+          <td style="font-family: monospace; font-size: 7.5pt; text-align: center;">INV/TPQ/P3K/001</td>
+          <td><strong>Kotak P3K Dinding Lengkap Obat & Perban</strong></td>
+          <td>Kesehatan & K3</td>
+          <td style="text-align: center; font-weight: bold;">1 Set</td>
+          <td style="text-align: center; color: #059669; font-weight: bold;">Baik</td>
+          <td>Kas Mandiri TPQ</td>
+          <td>Kantor Pengurus</td>
+          <td style="text-align: center;">2025</td>
+        </tr>        <tr>
+          <td style="text-align: center;">11</td>
+          <td style="font-family: monospace; font-size: 7.5pt; text-align: center;">INV/TPQ/WDH/001-010</td>
+          <td><strong>Kran Air Wudhu Stainless Putra & Putri</strong></td>
+          <td>Sanitasi Wudhu</td>
+          <td style="text-align: center; font-weight: bold;">10 Titik</td>
+          <td style="text-align: center; color: #059669; font-weight: bold;">Baik</td>
+          <td>Wakaf Masjid Al-Fatah</td>
+          <td>Area Wudhu Santri</td>
+          <td style="text-align: center;">2024</td>
+        </tr>        <tr>
+          <td style="text-align: center;">12</td>
+          <td style="font-family: monospace; font-size: 7.5pt; text-align: center;">INV/TPQ/SMP/001-006</td>
+          <td><strong>Tempat Sampah Tertutup Organik/Anorganik</strong></td>
+          <td>Kebersihan</td>
+          <td style="text-align: center; font-weight: bold;">6 Buah</td>
+          <td style="text-align: center; color: #059669; font-weight: bold;">Baik</td>
+          <td>Kas Mandiri TPQ</td>
+          <td>Halaman & Selasar</td>
+          <td style="text-align: center;">2025</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="background: #fff1f2; border: 1px solid #fecdd3; padding: 6px 10px; border-radius: 4px; font-size: 8pt; margin-top: 6px; display: flex; justify-content: space-between;">
+      <span><strong>Status Kepemilikan Lahan & Bangunan:</strong> Tanah Hak Milik Wakaf Yayasan AL FATAH (Nomor Ikrar Wakaf: W.2/014/KUA/2018)</span>
+      <span><strong>Kondisi Fasilitas Fisik:</strong> 100% Layak, Bersih, dan Berfungsi Penuh</span>
+    </div>
+
+    <div class="ttd-box">
+      <div class="ttd-col">
+        <p>Mengetahui,<br><strong>Ketua Tim Asesor Akreditasi</strong></p>
+        <div class="ttd-space"></div>
+        <p><strong><u>Dr. H. Sholehuddin, M.Pd.I</u></strong></p>
+      </div>
+      <div class="ttd-col">
+        <p>Sidoarjo, 15 Juli 2026<br><strong>Koord. Sarana & Prasarana</strong></p>
+        <div class="ttd-space"></div>
+        <p><strong><u>Ustadzah Siti Rokhmah, A.Ma</u></strong><br><span style='font-size: 8pt; font-family: monospace;'>NIY. 19981229 202107 2 006</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOKUMEN 5.2: BUKU KAS UMUM (BKU) OPERASIONAL TPQ - PORTRAIT -->
+  <div class="print-sheet">
+    <div class="kop">
+      <div class="kop-logo">📖</div>
+      <div class="kop-mid">
+        <h4>YAYASAN AL FATAH</h4>
+        <h2>TPQ MUSLIMAT NU AL-IKHLAS</h2>
+        <p>Badan Hukum: AHU-0014285.AH.01.04.Tahun 2018 • NSQ: 411235150089 • SK IJOP: Kd.13.15/4/PP.00.7/1420/2024</p>
+        <p>Alamat: Jl. Masjid Al-Fatah No. 09, RT 03/RW 02, Sidokare, Kec. Sidoarjo, Kab. Sidoarjo, Jawa Timur (Kode Pos 61214) | Telp: (031) 8945672 / 0812-3245-8891</p>
+      </div>
+      <div class="kop-logo" style="font-size: 8.5pt; line-height: 1.1;">MUSLIMAT<br>NU</div>
+    </div>
+    <div class="doc-title">
+      <h3>BUKU KAS UMUM (BKU) OPERASIONAL LEMBAGA</h3>
+      <p>PERIODE: AGUSTUS - SEPTEMBER 2026 • TAHUN AJARAN 2026/2027</p>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 70px;">Tanggal</th>
+          <th style="width: 80px;">No. Bukti</th>
+          <th>Uraian Transaksi Keuangan</th>
+          <th style="width: 80px;">Pemasukan (Rp)</th>
+          <th style="width: 80px;">Pengeluaran (Rp)</th>
+          <th style="width: 85px;">Saldo Kas (Rp)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center;">01/08/2026</td>
+          <td style="font-family: monospace; text-align: center;">KW-08/01</td>
+          <td>Penerimaan Infaq Syahriyah Bulanan (SPP) Santri</td>
+          <td style="text-align: right; font-weight: bold; color: #059669;">3.600.000</td>
+          <td style="text-align: right;">-</td>
+          <td style="text-align: right; font-weight: bold;">3.600.000</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">03/08/2026</td>
+          <td style="font-family: monospace; text-align: center;">KW-08/02</td>
+          <td>Donasi Rutin Hamba Allah via Yayasan AL FATAH</td>
+          <td style="text-align: right; font-weight: bold; color: #059669;">1.500.000</td>
+          <td style="text-align: right;">-</td>
+          <td style="text-align: right; font-weight: bold;">5.100.000</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">05/08/2026</td>
+          <td style="font-family: monospace; text-align: center;">NT-08/01</td>
+          <td>Pengadaan ATK, Kertas HVS & Tinta Spidol Whiteboard</td>
+          <td style="text-align: right;">-</td>
+          <td style="text-align: right; color: #dc2626;">450.000</td>
+          <td style="text-align: right; font-weight: bold;">4.650.000</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">10/08/2026</td>
+          <td style="font-family: monospace; text-align: center;">NT-08/02</td>
+          <td>Pembayaran Listrik PLN & Alat Sanitasi Kebersihan</td>
+          <td style="text-align: right;">-</td>
+          <td style="text-align: right; color: #dc2626;">250.000</td>
+          <td style="text-align: right; font-weight: bold;">4.400.000</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">15/08/2026</td>
+          <td style="font-family: monospace; text-align: center;">KW-08/03</td>
+          <td>Infaq Pendaftaran PSB 5 Santri Baru Semester Ganjil</td>
+          <td style="text-align: right; font-weight: bold; color: #059669;">750.000</td>
+          <td style="text-align: right;">-</td>
+          <td style="text-align: right; font-weight: bold;">5.150.000</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">25/08/2026</td>
+          <td style="font-family: monospace; text-align: center;">KW-08/04</td>
+          <td>Penyaluran Bisaroh / Insentif Ustadzah (6 Pengajar)</td>
+          <td style="text-align: right;">-</td>
+          <td style="text-align: right; color: #dc2626;">3.000.000</td>
+          <td style="text-align: right; font-weight: bold;">2.150.000</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">01/09/2026</td>
+          <td style="font-family: monospace; text-align: center;">KW-09/01</td>
+          <td>Penerimaan Infaq Syahriyah Bulanan Santri September</td>
+          <td style="text-align: right; font-weight: bold; color: #059669;">3.750.000</td>
+          <td style="text-align: right;">-</td>
+          <td style="text-align: right; font-weight: bold;">5.900.000</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">05/09/2026</td>
+          <td style="font-family: monospace; text-align: center;">NT-09/01</td>
+          <td>Pengadaan 6 Map Odner Bantex Tebal & Divider Akreditasi</td>
+          <td style="text-align: right;">-</td>
+          <td style="text-align: right; color: #dc2626;">380.000</td>
+          <td style="text-align: right; font-weight: bold;">5.520.000</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr style="background: #f1f5f9; font-weight: bold;">
+          <td colspan="3" style="text-align: center;">TOTAL KAS KELUAR & SALDO AKHIR</td>
+          <td style="text-align: right; color: #059669;">9.600.000</td>
+          <td style="text-align: right; color: #dc2626;">4.080.000</td>
+          <td style="text-align: right; color: #1e3a8a;">Rp 5.520.000</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="ttd-box">
+      <div class="ttd-col">
+        <p>Mengetahui,<br><strong>Bendahara TPQ Muslimat NU</strong></p>
+        <div class="ttd-space"></div>
+        <p><strong><u>Ustadzah Fatimatuz Zahro, S.Pd</u></strong></p>
+      </div>
+      <div class="ttd-col">
+        <p>Sidoarjo, 15 Juli 2026<br><strong>Kepala TPQ Muslimat NU AL-IKHLAS</strong></p>
+        <div class="ttd-space"></div>
+        <p><strong><u>Ustadzah Hj. Siti Aminah, S.Pd.I</u></strong><br><span style='font-size: 8pt; font-family: monospace;'>NIY. 19820514 201201 2 001</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOKUMEN 5.3: ASWAJA NU & DOA QUNUT SHUBUH - PORTRAIT -->
+  <div class="print-sheet">
+    <div class="kop">
+      <div class="kop-logo">📖</div>
+      <div class="kop-mid">
+        <h4>YAYASAN AL FATAH</h4>
+        <h2>TPQ MUSLIMAT NU AL-IKHLAS</h2>
+        <p>Badan Hukum: AHU-0014285.AH.01.04.Tahun 2018 • NSQ: 411235150089 • SK IJOP: Kd.13.15/4/PP.00.7/1420/2024</p>
+        <p>Alamat: Jl. Masjid Al-Fatah No. 09, RT 03/RW 02, Sidokare, Kec. Sidoarjo, Kab. Sidoarjo, Jawa Timur (Kode Pos 61214) | Telp: (031) 8945672 / 0812-3245-8891</p>
+      </div>
+      <div class="kop-logo" style="font-size: 8.5pt; line-height: 1.1;">MUSLIMAT<br>NU</div>
+    </div>
+    <div class="doc-title">
+      <h3>PANDUAN KEKHASAN KE-NU-AN & AMALIYAH ASWAJA</h3>
+      <p>CIRI KHAS LEMBAGA BINAAN PIMPINAN MUSLIMAT NAHDLATUL ULAMA</p>
+    </div>
+
+    <div style="font-size: 8.5pt; line-height: 1.5; text-align: justify; margin-bottom: 10px;">
+      <p style="margin: 0 0 6px 0;"><strong>A. AMALIYAH RUTIN ASWAJA AN-NAHDLIYAH:</strong><br>
+      Santri TPQ Muslimat NU AL-IKHLAS dibimbing mempraktikkan ajaran Islam moderat (Tawassuth, Tawazun, I'tidal, Tasamuh) dengan amaliyah harian:</p>
+      <ol style="margin: 0 0 8px 0; padding-left: 20px;">
+        <li><strong>Tawasul & Fatihah:</strong> Dihadiahkan kepada Rasulullah SAW, para sahabat, Masyayikh NU (Hadratussyaikh KH. Hasyim Asy'ari), dan muwakif.</li>
+        <li><strong>Sholawat Nahdliyyah & Tibbil Qulub:</strong> Dilantunkan serentak sebelum KBM untuk memupuk mahabbah kepada Nabi Muhammad SAW.</li>
+        <li><strong>Doa Qunut Shubuh:</strong> Wajib dihafal santri sebelum naik ke tingkat Al-Qur'an sesuai Fiqih Madzhab Syafi'i.</li>
+        <li><strong>Peringatan Hari Santri Nasional (HSN):</strong> Pawai ta'aruf berbusana sarung dan peci hitam tradisi santri Nusantara.</li>
+      </ol>
+
+      <p style="margin: 0 0 4px 0;"><strong>B. TEKS DOA QUNUT SHUBUH (MADZHAB SYAFI'I):</strong></p>
+      <div style="background: #f8fafc; border: 1.5px solid #064e3b; border-radius: 6px; padding: 10px; font-family: 'Amiri', 'Traditional Arabic', serif; font-size: 13pt; direction: rtl; text-align: right; line-height: 1.8; margin-bottom: 8px;">
+        اَللّٰهُمَّ اهْدِنِيْ فِيْمَنْ هَدَيْتَ، وَعَافِنِيْ فِيْمَنْ عَافَيْتَ، وَتَوَلَّنِيْ فِيْمَنْ تَوَلَّيْتَ، وَبَارِكْ لِيْ فِيْمَا أَعْطَيْتَ، وَقِنِيْ شَرَّ مَا قَضَيْتَ، فَإِنَّكَ تَقْضِيْ وَلَا يُقْضَى عَلَيْكَ، وَإِنَّهُ لَا يَذِلُّ مَنْ وَالَيْتَ، وَلَا يَعِزُّ مَنْ عَادَيْتَ، تَبَارَكْتَ رَبَّنَا وَتَعَالَيْتَ، فَلَكَ الْحَمْدُ عَلَى مَا قَضَيْتَ، أَسْتَغْفِرُكَ وَأَتُوْبُ إِلَيْكَ، وَصَلَّى اللهُ عَلَى سَيِّدِنَا مُحَمَّدٍ النَّبِيِّ الْأُمِّيِّ وَعَلَى آلِهِ وَصَحْبِهِ وَسَلَّمَ.
+      </div>
+    </div>
+
+    <div class="ttd-box">
+      <div class="ttd-col">
+        <p>Mengetahui,<br><strong>Ketua PAC Muslimat NU Sidoarjo</strong></p>
+        <div class="ttd-space"></div>
+        <p><strong><u>Hj. Mu'allimah</u></strong></p>
+      </div>
+      <div class="ttd-col">
+        <p>Sidoarjo, 15 Juli 2026<br><strong>Kepala TPQ Muslimat NU AL-IKHLAS</strong></p>
+        <div class="ttd-space"></div>
+        <p><strong><u>Ustadzah Hj. Siti Aminah, S.Pd.I</u></strong><br><span style='font-size: 8pt; font-family: monospace;'>NIY. 19820514 201201 2 001</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOKUMEN 5.4: SK KOMITE WALI SANTRI & BERITA ACARA MUSYAWARAH -->
+  <div class="print-sheet">
+    <div class="kop">
+      <div class="kop-logo">📖</div>
+      <div class="kop-mid">
+        <h4>YAYASAN AL FATAH</h4>
+        <h2>TPQ MUSLIMAT NU AL-IKHLAS</h2>
+        <p>Badan Hukum: AHU-0014285.AH.01.04.Tahun 2018 • NSQ: 411235150089 • SK IJOP: Kd.13.15/4/PP.00.7/1420/2024</p>
+        <p>Alamat: Jl. Masjid Al-Fatah No. 09, RT 03/RW 02, Sidokare, Kec. Sidoarjo, Kab. Sidoarjo, Jawa Timur (Kode Pos 61214) | Telp: (031) 8945672 / 0812-3245-8891</p>
+      </div>
+      <div class="kop-logo" style="font-size: 8.5pt; line-height: 1.1;">MUSLIMAT<br>NU</div>
+    </div>
+    <div class="doc-title">
+      <h3>SURAT KEPUTUSAN KEPALA TPQ MUSLIMAT NU AL-IKHLAS</h3>
+      <p>NOMOR: 019/SK-KOM/TPQ-MNU/VII/2026</p>
+    </div>
+
+    <div style="text-align: center; font-weight: bold; font-size: 9.5pt; margin-bottom: 10px;">
+      TENTANG:<br>SUSUNAN PENGURUS KOMITE WALI SANTRI TPQ MUSLIMAT NU AL-IKHLAS<br>PERIODE 2026 - 2028
+    </div>
+
+    <div style="font-size: 8.5pt; line-height: 1.5; text-align: justify; margin-bottom: 12px;">
+      <p style="margin: 0 0 6px 0;"><strong>MENIMBANG:</strong> Bahwa untuk mempererat ukhuwah islamiyah dan keterlibatan aktif orang tua dalam peningkatan sarana, mutu, dan pengawasan KBM, dipandang perlu mengukuhkan Komite Wali Santri.</p>
+      <p style="margin: 0 0 6px 0;"><strong>MEMUTUSKAN, MENETAPKAN:</strong></p>
+      <p style="margin: 0 0 4px 0;"><strong>PERTAMA:</strong> Mengesahkan Susunan Pengurus Komite Wali Santri TPQ Muslimat NU AL-IKHLAS Periode 2026 - 2028 dengan susunan:</p>
+      <ul style="margin: 0 0 8px 0; padding-left: 20px;">
+        <li><strong>Ketua Komite:</strong> H. Ridwan Santoso (Wali dari Muhammad Bilal Al-Ghifari)</li>
+        <li><strong>Sekretaris Komite:</strong> Dian Kusuma, S.Pd (Wali dari Fatimah Az-Zahra)</li>
+        <li><strong>Bendahara Komite:</strong> Hj. Sholihatun Nisa (Wali dari Aisyah Nur Ramadhani)</li>
+        <li><strong>Seksi Sarana & Sosial:</strong> Bambang Supriyadi (Wali dari Ibrahim Hanif)</li>
+        <li><strong>Seksi Acara & PHBI:</strong> Sri Wahyuni, S.Pd (Wali dari Ahmad Zaki Mubarak)</li>
+      </ul>
+      <p style="margin: 0 0 4px 0;"><strong>KEDUA:</strong> Komite berfungsi sebagai mitra musyawarah, penyalur aspirasi wali santri, dan pendukung pengembangan sarana prasarana TPQ.</p>
+    </div>
+
+    <div class="ttd-box">
+      <div class="ttd-col">
+        <p>Mengetahui,<br><strong>Ketua Komite Wali Santri</strong></p>
+        <div class="ttd-space"></div>
+        <p><strong><u>H. Ridwan Santoso</u></strong></p>
+      </div>
+      <div class="ttd-col">
+        <p>Sidoarjo, 15 Juli 2026<br><strong>Kepala TPQ Muslimat NU AL-IKHLAS</strong></p>
+        <div class="ttd-space"></div>
+        <p><strong><u>Ustadzah Hj. Siti Aminah, S.Pd.I</u></strong><br><span style='font-size: 8pt; font-family: monospace;'>NIY. 19820514 201201 2 001</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOKUMEN 5.5: BERITA ACARA PEMERIKSAAN FISIK BANGUNAN & SANITASI -->
+  <div class="print-sheet">
+    <div class="kop">
+      <div class="kop-logo">📖</div>
+      <div class="kop-mid">
+        <h4>YAYASAN AL FATAH</h4>
+        <h2>TPQ MUSLIMAT NU AL-IKHLAS</h2>
+        <p>Badan Hukum: AHU-0014285.AH.01.04.Tahun 2018 • NSQ: 411235150089 • SK IJOP: Kd.13.15/4/PP.00.7/1420/2024</p>
+        <p>Alamat: Jl. Masjid Al-Fatah No. 09, RT 03/RW 02, Sidokare, Kec. Sidoarjo, Kab. Sidoarjo, Jawa Timur (Kode Pos 61214) | Telp: (031) 8945672 / 0812-3245-8891</p>
+      </div>
+      <div class="kop-logo" style="font-size: 8.5pt; line-height: 1.1;">MUSLIMAT<br>NU</div>
+    </div>
+    <div class="doc-title">
+      <h3>BERITA ACARA PEMERIKSAAN KELAYAKAN SARANA PRASARANA</h3>
+      <p>NOMOR: 011/BA-SARPRAS/TPQ-MNU/VII/2026</p>
+    </div>
+
+    <div style="font-size: 8.5pt; line-height: 1.5; text-align: justify; margin-bottom: 12px;">
+      <p style="margin: 0 0 6px 0;">Pada hari ini, Senin tanggal 15 Juli 2026, telah dilaksanakan pemeriksaan dan verifikasi fisik terhadap sarana, prasarana, gedung, sanitasi, dan lingkungan belajar TPQ Muslimat NU AL-IKHLAS dengan hasil sebagai berikut:</p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 25px;">No</th>
+            <th style="width: 140px;">Komponen Fasilitas Fisik</th>
+            <th>Kondisi Nyata di Lapangan & Bukti Fisik</th>
+            <th style="width: 80px;">Status Asesmen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align: center;">1</td>
+            <td><strong>Ruang Kelas & Belajar</strong></td>
+            <td>3 Ruang Belajar rapi, bersih, berlantai keramik, berkarpet tebal sajadah, ventilasi udara cukup dan dilengkapi kipas angin tornado.</td>
+            <td style="text-align: center; color: #059669; font-weight: bold;">Sangat Layak</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">2</td>
+            <td><strong>Tempat Wudhu & Sanitasi</strong></td>
+            <td>10 titik kran wudhu stainless steel mengalir lancar, air sumur bersih dan suci mensucikan, area putra dan putri terpisah.</td>
+            <td style="text-align: center; color: #059669; font-weight: bold;">Sangat Bersih</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">3</td>
+            <td><strong>Toilet & Kamar Mandi</strong></td>
+            <td>2 unit toilet bersih, wangi, tertutup rapat, dilengkapi gayung, sabun cuci tangan, dan bak penampung air terkuras rutin.</td>
+            <td style="text-align: center; color: #059669; font-weight: bold;">Memenuhi K3</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">4</td>
+            <td><strong>Plang Nama Lembaga</strong></td>
+            <td>Plang nama permanen bahan plat seng/besi berlogo Muslimat NU dan Kemenag terpampang jelas di depan pagar gedung utama.</td>
+            <td style="text-align: center; color: #059669; font-weight: bold;">Jelas & Sah</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">5</td>
+            <td><strong>Keamanan & P3K</strong></td>
+            <td>Kotak P3K dinding lengkap obat luka, obat penurun demam anak, minyak kayu putih, perban steril, dan lingkungan bebas genangan.</td>
+            <td style="text-align: center; color: #059669; font-weight: bold;">Standar Kemenag</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ttd-box">
+      <div class="ttd-col">
+        <p>Mengetahui,<br><strong>Petugas Pemeriksa Yayasan</strong></p>
+        <div class="ttd-space"></div>
+        <p><strong><u>Drs. H. Ahmad Fathoni, M.Pd.I</u></strong></p>
+      </div>
+      <div class="ttd-col">
+        <p>Sidoarjo, 15 Juli 2026<br><strong>Koordinator Sarpras TPQ</strong></p>
+        <div class="ttd-space"></div>
+        <p><strong><u>Ustadzah Siti Rokhmah, A.Ma</u></strong><br><span style='font-size: 8pt; font-family: monospace;'>NIY. 19981229 202107 2 006</span></p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

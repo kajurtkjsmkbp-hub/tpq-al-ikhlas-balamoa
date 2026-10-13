@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>ODNER 4 : PENDIDIK & SYAHADAH - TPQ MUSLIMAT NU AL-IKHLAS</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 12mm 15mm;
+    }
+    @page landscapeSection {
+      size: A4 landscape;
+      margin: 10mm 12mm;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      margin: 0;
+      padding: 0;
+      background: #e2e8f0;
+      color: #0f172a;
+      font-size: 10pt;
+      line-height: 1.35;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .print-sheet {
+      background: white;
+      width: 210mm;
+      min-height: 297mm;
+      margin: 20px auto;
+      padding: 13mm 15mm;
+      box-sizing: border-box;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+      border-radius: 4px;
+      page-break-after: always;
+      break-after: page;
+      position: relative;
+    }
+    .print-sheet.landscape {
+      page: landscapeSection;
+      width: 297mm;
+      min-height: 210mm;
+      padding: 10mm 12mm;
+    }
+    @media print {
+      body {
+        background: white !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .print-sheet {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        page-break-after: always !important;
+        break-after: page !important;
+      }
+      .print-sheet:last-child {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+    .kop {
+      border-bottom: 3px double #0f172a;
+      padding-bottom: 6px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+    }
+    .kop-logo {
+      width: 52px;
+      height: 52px;
+      border: 1.5px solid #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 13pt;
+      border-radius: 8px;
+    }
+    .kop-mid {
+      flex: 1;
+      padding: 0 10px;
+    }
+    .kop-mid h4 {
+      margin: 0;
+      font-size: 10pt;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    .kop-mid h2 {
+      margin: 1px 0;
+      font-size: 13.5pt;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: #064e3b;
+    }
+    .kop-mid p {
+      margin: 1px 0;
+      font-size: 8pt;
+      color: #1e293b;
+    }
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0;
+      font-size: 8.5pt;
+    }
+    table.data-table th, table.data-table td {
+      border: 1px solid #1e293b;
+      padding: 4px 6px;
+    }
+    table.data-table th {
+      background: #f1f5f9;
+      font-weight: bold;
+      text-align: center;
+    }
+    .ttd-box {
+      margin-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+      font-size: 9.5pt;
+      page-break-inside: avoid;
+    }
+    .ttd-col {
+      width: 44%;
+    }
+    .ttd-space {
+      height: 48px;
+    }
+    .doc-title {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .doc-title h3 {
+      margin: 0;
+      text-decoration: underline;
+      text-transform: uppercase;
+      font-size: 11pt;
+    }
+    .doc-title p {
+      margin: 2px 0 0;
+      font-size: 8.5pt;
+      font-weight: bold;
+      color: #334155;
+    }
+    .badge-status {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 7.5pt;
+      font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+  <div class="no-print" style="position: fixed; top: 15px; right: 15px; z-index: 999; background: #7c3aed; padding: 10px 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.25);">
+    <button onclick="window.print()" style="background: #fbbf24; color: #000; border: none; padding: 8px 18px; font-weight: bold; font-size: 12pt; border-radius: 6px; cursor: pointer;">
+      🖨️ CETAK ODNER 4 (Ctrl + P)
+    </button>
+  </div>
+
+  <!-- DOKUMEN 4.1: LEMBAR VERIFIKASI ASESOR & BUKU INDUK GURU - LANDSCAPE -->
+  <div class="print-sheet landscape">
+    <div class="kop">
+      <div class="kop-logo">📖</div>
+      <div class="kop-mid">
+        <h4>YAYASAN AL FATAH</h4>
+        <h2>TPQ MUSLIMAT NU AL-IKHLAS</h2>
+        <p>Badan Hukum: AHU-0014285.AH.01.04.Tahun 2018 • NSQ: 411235150089 • SK IJOP: Kd.13.15/4/PP.00.7/1420/2024</p>
+        <p>Alamat: Jl. Masjid Al-Fatah No. 09, RT 03/RW 02, Sidokare, Kec. Sidoarjo, Kab. Sidoarjo, Jawa Timur (Kode Pos 61214) | Telp: (031) 8945672 / 0812-3245-8891</p>
+      </div>
+      <div class="kop-logo" style="font-size: 8.5pt; line-height: 1.1;">MUSLIMAT<br>NU</div>
+    </div>
+    <div class="doc-title">
+      <h3>BUKU INDUK PENDIDIK & TENAGA KEPENDIDIKAN (ASATIDZ)</h3>
+      <p>ODNER 4 : STANDAR KOMPETENSI PENDIDIK • TAHUN AJARAN 2026/2027</p>
+    </div>
+
+    <table class="data-table" style="font-size: 8pt;">
+      <thead>
+        <tr>
+          <th style="width: 25px;">No</th>
+          <th style="width: 70px;">NIY</th>
+          <th style="width: 95px;">NIK KTP</th>
+          <th>Nama Lengkap Ustadz/Ustadzah</th>
+          <th style="width: 25px;">L/P</th>
+          <th style="width: 140px;">Pendidikan Terakhir</th>
+          <th style="width: 140px;">Alumni Pesantren</th>
+          <th style="width: 130px;">Tugas Utama Mengajar</th>
+          <th style="width: 85px;">No. WhatsApp</th>
+          <th style="width: 60px;">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center;">1</td>
+          <td style="font-family: monospace; text-align: center;">TPQ-01.001</td>
+          <td style="font-family: monospace; text-align: center;">3515015208820001</td>
+          <td><strong>Ustadzah Hj. Siti Aminah, S.Pd.I</strong></td>
+          <td style="text-align: center; font-weight: bold;">P</td>
+          <td>S1 Pendidikan Agama Islam (UIN Sunan Ampel)</td>
+          <td>PP. Al-Fathimiyyah Bahrul Ulum Jombang</td>
+          <td style="font-weight: bold; color: #4338ca;">Kepala TPQ & Pembina Tahsin Al-Qur'an</td>
+          <td style="font-family: monospace;">0812-3245-8891</td>
+          <td style="text-align: center; font-weight: bold; color: #059669;">Guru Tetap</td>
+        </tr>        <tr>
+          <td style="text-align: center;">2</td>
+          <td style="font-family: monospace; text-align: center;">TPQ-01.002</td>
+          <td style="font-family: monospace; text-align: center;">3515016405890002</td>
+          <td><strong>Ustadzah Maimunah, S.Ag</strong></td>
+          <td style="text-align: center; font-weight: bold;">P</td>
+          <td>S1 Ilmu Al-Qur'an & Tafsir (UIN Sunan Ampel)</td>
+          <td>PP. Madrasatul Qur'an Tebuireng Jombang</td>
+          <td style="font-weight: bold; color: #4338ca;">Koordinator Kurikulum & Kelas Tajwid</td>
+          <td style="font-family: monospace;">0813-5566-7788</td>
+          <td style="text-align: center; font-weight: bold; color: #059669;">Guru Tetap</td>
+        </tr>        <tr>
+          <td style="text-align: center;">3</td>
+          <td style="font-family: monospace; text-align: center;">TPQ-01.003</td>
+          <td style="font-family: monospace; text-align: center;">3515011210920003</td>
+          <td><strong>Ustadz Ahmad Fauzi, S.Pd</strong></td>
+          <td style="text-align: center; font-weight: bold;">L</td>
+          <td>S1 Manajemen Pendidikan Islam (UIN Surabaya)</td>
+          <td>PP. Langitan Tuban</td>
+          <td style="font-weight: bold; color: #4338ca;">Koordinator Kesiswaan & Jilid 5-6</td>
+          <td style="font-family: monospace;">0857-4433-2211</td>
+          <td style="text-align: center; font-weight: bold; color: #059669;">Guru Tetap</td>
+        </tr>        <tr>
+          <td style="text-align: center;">4</td>
+          <td style="font-family: monospace; text-align: center;">TPQ-01.004</td>
+          <td style="font-family: monospace; text-align: center;">3515014503950004</td>
+          <td><strong>Ustadzah Fatimatuz Zahro, S.Pd</strong></td>
+          <td style="text-align: center; font-weight: bold;">P</td>
+          <td>S1 Pendidikan Bahasa Arab (UIN Malang)</td>
+          <td>PP. Bahrul Ulum Tambakberas Jombang</td>
+          <td style="font-weight: bold; color: #4338ca;">Bendahara & Jilid 3-4</td>
+          <td style="font-family: monospace;">0812-9988-7766</td>
+          <td style="text-align: center; font-weight: bold; color: #059669;">Guru Tetap</td>
+        </tr>        <tr>
+          <td style="text-align: center;">5</td>
+          <td style="font-family: monospace; text-align: center;">TPQ-01.005</td>
+          <td style="font-family: monospace; text-align: center;">3515015809960005</td>
+          <td><strong>Ustadzah Nurul Hidayati, S.Pd</strong></td>
+          <td style="text-align: center; font-weight: bold;">P</td>
+          <td>S1 PGMI (Universitas Sunan Giri Sidoarjo)</td>
+          <td>PP. Al-Khoziny Buduran Sidoarjo</td>
+          <td style="font-weight: bold; color: #4338ca;">Sekretaris & Jilid 2</td>
+          <td style="font-family: monospace;">0878-1122-3344</td>
+          <td style="text-align: center; font-weight: bold; color: #059669;">Guru Tetap</td>
+        </tr>        <tr>
+          <td style="text-align: center;">6</td>
+          <td style="font-family: monospace; text-align: center;">TPQ-01.006</td>
+          <td style="font-family: monospace; text-align: center;">3515016912980006</td>
+          <td><strong>Ustadzah Siti Rokhmah, A.Ma</strong></td>
+          <td style="text-align: center; font-weight: bold;">P</td>
+          <td>D3 Tarbiyah & Hafidzah 30 Juz</td>
+          <td>PP. Tahfidzul Qur'an Al-Baqarah Pasuruan</td>
+          <td style="font-weight: bold; color: #4338ca;">Koordinator Sarpras & Jilid 1 (Dasar)</td>
+          <td style="font-family: monospace;">0813-6677-8800</td>
+          <td style="text-align: center; font-weight: bold; color: #059669;">Guru Tetap</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="background: #f5f3ff; border: 1px solid #ddd6fe; padding: 6px 10px; border-radius: 4px; font-size: 8pt; margin-top: 6px; display: flex; justify-content: space-between;">
+      <span><strong>Kualifikasi Pendidikan:</strong> 83.3% S1 Sarjana Agama / Pendidikan • 16.7% D3 Tarbiyah / Hafidzah 30 Juz</span>
+      <span><strong>Kelayakan Mengajar:</strong> 100% Memiliki Syahadah Resmi Metode Al-Qur'an</span>
+    </div>
+
+    <div class="ttd-box">
+      <div class="ttd-col">
+        <p>Mengetahui,<br><strong>Ketua Tim Asesor Akreditasi</strong></p>
+        <div class="ttd-space"></div>
+        <p><strong><u>Dr. H. Sholehuddin, M.Pd.I</u></strong></p>
+      </div>
+      <div class="ttd-col">
+        <p>Sidoarjo, 15 Juli 2026<br><strong>Kepala TPQ Muslimat NU AL-IKHLAS</strong></p>
+        <div class="ttd-space"></div>
+        <p><strong><u>Ustadzah Hj. Siti Aminah, S.Pd.I</u></strong><br><span style='font-size: 8pt; font-family: monospace;'>NIY. 19820514 201201 2 001</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOKUMEN 4.2: REKAPITULASI & VERIFIKASI SYAHADAH GURU - PORTRAIT -->
+  <div class="print-sheet">
+    <div class="kop">
+      <div class="kop-logo">📖</div>
+      <div class="kop-mid">
+        <h4>YAYASAN AL FATAH</h4>
+        <h2>TPQ MUSLIMAT NU AL-IKHLAS</h2>
+        <p>Badan Hukum: AHU-0014285.AH.01.04.Tahun 2018 • NSQ: 411235150089 • SK IJOP: Kd.13.15/4/PP.00.7/1420/2024</p>
+        <p>Alamat: Jl. Masjid Al-Fatah No. 09, RT 03/RW 02, Sidokare, Kec. Sidoarjo, Kab. Sidoarjo, Jawa Timur (Kode Pos 61214) | Telp: (031) 8945672 / 0812-3245-8891</p>
+      </div>
+      <div class="kop-logo" style="font-size: 8.5pt; line-height: 1.1;">MUSLIMAT<br>NU</div>
+    </div>
+    <div class="doc-title">
+      <h3>REKAPITULASI & VERIFIKASI SYAHADAH KELAYAKAN MENGAJAR</h3>
+      <p>BUKTI KOMPETENSI PEDAGOGIK DAN TARTIL AL-QUR'AN</p>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 25px;">No</th>
+          <th style="width: 140px;">Nama Ustadz / Ustadzah</th>
+          <th>Metode / Syahadah</th>
+          <th style="width: 110px;">Nomor Syahadah</th>
+          <th style="width: 45px;">Tahun</th>
+          <th style="width: 110px;">Penerbit Syahadah</th>
+          <th style="width: 75px;">Verifikasi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center;">1</td>
+          <td><strong>Ustadzah Hj. Siti Aminah, S.Pd.I</strong><br><span style="font-family: monospace; font-size: 7.5pt; color: #475569;">NIY: TPQ-01.001</span></td>
+          <td style="font-weight: bold;">Metode An-Nahdliyah Tingkat Munaqisy</td>
+          <td style="font-family: monospace; font-weight: bold; text-align: center;">SYH-AN/JTM/2018/0092</td>
+          <td style="text-align: center;">2018</td>
+          <td>Lembaga Pembina Metode / Pengurus Cabang NU</td>
+          <td style="text-align: center; color: #059669; font-weight: bold;">[ &check; Terverifikasi ]</td>
+        </tr>        <tr>
+          <td style="text-align: center;">2</td>
+          <td><strong>Ustadzah Maimunah, S.Ag</strong><br><span style="font-family: monospace; font-size: 7.5pt; color: #475569;">NIY: TPQ-01.002</span></td>
+          <td style="font-weight: bold;">Metode An-Nahdliyah & Yanbu'a</td>
+          <td style="font-family: monospace; font-weight: bold; text-align: center;">SYH-AN/JTM/2020/0112</td>
+          <td style="text-align: center;">2020</td>
+          <td>Lembaga Pembina Metode / Pengurus Cabang NU</td>
+          <td style="text-align: center; color: #059669; font-weight: bold;">[ &check; Terverifikasi ]</td>
+        </tr>        <tr>
+          <td style="text-align: center;">3</td>
+          <td><strong>Ustadz Ahmad Fauzi, S.Pd</strong><br><span style="font-family: monospace; font-size: 7.5pt; color: #475569;">NIY: TPQ-01.003</span></td>
+          <td style="font-weight: bold;">Metode An-Nahdliyah</td>
+          <td style="font-family: monospace; font-weight: bold; text-align: center;">SYH-AN/JTM/2022/0789</td>
+          <td style="text-align: center;">2022</td>
+          <td>Lembaga Pembina Metode / Pengurus Cabang NU</td>
+          <td style="text-align: center; color: #059669; font-weight: bold;">[ &check; Terverifikasi ]</td>
+        </tr>        <tr>
+          <td style="text-align: center;">4</td>
+          <td><strong>Ustadzah Fatimatuz Zahro, S.Pd</strong><br><span style="font-family: monospace; font-size: 7.5pt; color: #475569;">NIY: TPQ-01.004</span></td>
+          <td style="font-weight: bold;">Metode Qiraati</td>
+          <td style="font-family: monospace; font-weight: bold; text-align: center;">SYH-QR/SBY/2023/0341</td>
+          <td style="text-align: center;">2023</td>
+          <td>Lembaga Pembina Metode / Pengurus Cabang NU</td>
+          <td style="text-align: center; color: #059669; font-weight: bold;">[ &check; Terverifikasi ]</td>
+        </tr>        <tr>
+          <td style="text-align: center;">5</td>
+          <td><strong>Ustadzah Nurul Hidayati, S.Pd</strong><br><span style="font-family: monospace; font-size: 7.5pt; color: #475569;">NIY: TPQ-01.005</span></td>
+          <td style="font-weight: bold;">Metode An-Nahdliyah</td>
+          <td style="font-family: monospace; font-weight: bold; text-align: center;">SYH-AN/JTM/2023/0904</td>
+          <td style="text-align: center;">2023</td>
+          <td>Lembaga Pembina Metode / Pengurus Cabang NU</td>
+          <td style="text-align: center; color: #059669; font-weight: bold;">[ &check; Terverifikasi ]</td>
+        </tr>        <tr>
+          <td style="text-align: center;">6</td>
+          <td><strong>Ustadzah Siti Rokhmah, A.Ma</strong><br><span style="font-family: monospace; font-size: 7.5pt; color: #475569;">NIY: TPQ-01.006</span></td>
+          <td style="font-weight: bold;">Syahadah Tahfidz & Metodologi Kemenag</td>
+          <td style="font-family: monospace; font-weight: bold; text-align: center;">SYH-TF/KMN/2024/0055</td>
+          <td style="text-align: center;">2024</td>
+          <td>Lembaga Pembina Metode / Pengurus Cabang NU</td>
+          <td style="text-align: center; color: #059669; font-weight: bold;">[ &check; Terverifikasi ]</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 10px; margin-top: 12px; font-size: 8.5pt;">
+      <strong>Catatan Verifikasi Asesor:</strong><br>
+      <em>"Seluruh dewan asatidz telah memiliki Syahadah Kelayakan Mengajar Metode Al-Qur'an tingkat Munaqisy/Guru dari lembaga otoritatif (An-Nahdliyah, Yanbu'a, Qiraati, dan Kemenag RI). Standar Pendidik terpenuhi melampaui ambang batas akreditasi (100% bersertifikat)."</em>
+    </div>
+
+    <div class="ttd-box">
+      <div class="ttd-col">
+        <p>Mengetahui,<br><strong>Ketua Yayasan AL FATAH</strong></p>
+        <div class="ttd-space"></div>
+        <p><strong><u>Drs. H. Ahmad Fathoni, M.Pd.I</u></strong></p>
+      </div>
+      <div class="ttd-col">
+        <p>Sidoarjo, 15 Juli 2026<br><strong>Kepala TPQ Muslimat NU AL-IKHLAS</strong></p>
+        <div class="ttd-space"></div>
+        <p><strong><u>Ustadzah Hj. Siti Aminah, S.Pd.I</u></strong><br><span style='font-size: 8pt; font-family: monospace;'>NIY. 19820514 201201 2 001</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOKUMEN 4.3: CONTOH SK PENGANGKATAN GURU TETAP - PORTRAIT -->
+  <div class="print-sheet">
+    <div class="kop">
+      <div class="kop-logo">📖</div>
+      <div class="kop-mid">
+        <h4>YAYASAN AL FATAH</h4>
+        <h2>TPQ MUSLIMAT NU AL-IKHLAS</h2>
+        <p>Badan Hukum: AHU-0014285.AH.01.04.Tahun 2018 • NSQ: 411235150089 • SK IJOP: Kd.13.15/4/PP.00.7/1420/2024</p>
+        <p>Alamat: Jl. Masjid Al-Fatah No. 09, RT 03/RW 02, Sidokare, Kec. Sidoarjo, Kab. Sidoarjo, Jawa Timur (Kode Pos 61214) | Telp: (031) 8945672 / 0812-3245-8891</p>
+      </div>
+      <div class="kop-logo" style="font-size: 8.5pt; line-height: 1.1;">MUSLIMAT<br>NU</div>
+    </div>
+    <div class="doc-title">
+      <h3>SURAT KEPUTUSAN KETUA YAYASAN AL FATAH</h3>
+      <p>NOMOR: 028/SK-GURU/YAF-TPQ/VII/2026</p>
+    </div>
+
+    <div style="text-align: center; font-weight: bold; font-size: 9.5pt; margin-bottom: 10px;">
+      TENTANG:<br>PENGANGKATAN GURU TETAP TAMAN PENDIDIKAN AL-QUR'AN (TPQ)<br>MUSLIMAT NU AL-IKHLAS TAHUN AJARAN 2026/2027
+    </div>
+
+    <div style="font-size: 8.5pt; line-height: 1.5; text-align: justify; margin-bottom: 12px;">
+      <p style="margin: 0 0 6px 0;"><strong>MENIMBANG:</strong> Bahwa untuk menjamin kepastian tenaga pendidik profesional Al-Qur'an dan kelancaran kegiatan belajar mengajar, dipandang perlu mengangkat Guru Tetap TPQ Muslimat NU AL-IKHLAS.</p>
+      <p style="margin: 0 0 6px 0;"><strong>MENGINGAT:</strong> Akta Notaris Pendirian Yayasan AL FATAH No. 12 Tahun 2018 dan Hasil Uji Kompetensi Mengajar Metode Al-Qur'an.</p>
+      <p style="margin: 0 0 6px 0;"><strong>MEMUTUSKAN, MENETAPKAN:</strong></p>
+      <p style="margin: 0 0 4px 0;"><strong>PERTAMA:</strong> Mengangkat Saudari <strong>Ustadzah Maimunah, S.Ag</strong> (NIY: 19890524 201507 2 002) sebagai <strong>Guru Tetap & Koordinator Kurikulum</strong> TPQ Muslimat NU AL-IKHLAS terhitung mulai tanggal 15 Juli 2026.</p>
+      <p style="margin: 0 0 4px 0;"><strong>KEDUA:</strong> Kepadanya diberikan hak bisaroh bulanan, fasilitas operasional mengajar, serta perlindungan profesi pendidik sesuai kemampuan anggaran lembaga.</p>
+      <p style="margin: 0 0 4px 0;"><strong>KETIGA:</strong> Bertanggung jawab langsung kepada Kepala TPQ Muslimat NU AL-IKHLAS dan Ketua Yayasan AL FATAH.</p>
+    </div>
+
+    <div class="ttd-box">
+      <div class="ttd-col">
+        <p>Mengetahui,<br><strong>Kepala TPQ Muslimat NU AL-IKHLAS</strong></p>
+        <div class="ttd-space"></div>
+        <p><strong><u>Ustadzah Hj. Siti Aminah, S.Pd.I</u></strong><br><span style='font-size: 8pt; font-family: monospace;'>NIY. 19820514 201201 2 001</span></p>
+      </div>
+      <div class="ttd-col">
+        <p>Sidoarjo, 15 Juli 2026<br><strong>Ketua Yayasan AL FATAH</strong></p>
+        <div class="ttd-space"></div>
+        <p><strong><u>Drs. H. Ahmad Fathoni, M.Pd.I</u></strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOKUMEN 4.4: PRESENSI & REKAP KEHADIRAN GURU BULANAN - PORTRAIT -->
+  <div class="print-sheet">
+    <div class="kop">
+      <div class="kop-logo">📖</div>
+      <div class="kop-mid">
+        <h4>YAYASAN AL FATAH</h4>
+        <h2>TPQ MUSLIMAT NU AL-IKHLAS</h2>
+        <p>Badan Hukum: AHU-0014285.AH.01.04.Tahun 2018 • NSQ: 411235150089 • SK IJOP: Kd.13.15/4/PP.00.7/1420/2024</p>
+        <p>Alamat: Jl. Masjid Al-Fatah No. 09, RT 03/RW 02, Sidokare, Kec. Sidoarjo, Kab. Sidoarjo, Jawa Timur (Kode Pos 61214) | Telp: (031) 8945672 / 0812-3245-8891</p>
+      </div>
+      <div class="kop-logo" style="font-size: 8.5pt; line-height: 1.1;">MUSLIMAT<br>NU</div>
+    </div>
+    <div class="doc-title">
+      <h3>REKAPITULASI PRESENSI KEHADIRAN DEWAN ASATIDZ</h3>
+      <p>BULAN: AGUSTUS 2026 • TOTAL HARI EFEKTIF: 24 HARI KBM</p>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 25px;">No</th>
+          <th style="width: 140px;">Nama Ustadz / Ustadzah</th>
+          <th style="width: 110px;">Jabatan / Rombel</th>
+          <th style="width: 45px;">Hadir</th>
+          <th style="width: 40px;">Sakit</th>
+          <th style="width: 40px;">Izin</th>
+          <th style="width: 55px;">% Hadir</th>
+          <th>Keterangan Keaktifan Mengajar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center;">1</td>
+          <td><strong>Ustadzah Hj. Siti Aminah, S.Pd.I</strong></td>
+          <td>Kepala TPQ / Al-Qur'an</td>
+          <td style="text-align: center; font-weight: bold;">24</td>
+          <td style="text-align: center;">0</td>
+          <td style="text-align: center;">0</td>
+          <td style="text-align: center; font-weight: bold; color: #059669;">100%</td>
+          <td>Hadir penuh membina santri & asatidz</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">2</td>
+          <td><strong>Ustadzah Maimunah, S.Ag</strong></td>
+          <td>Koord. Kurikulum / Tajwid</td>
+          <td style="text-align: center; font-weight: bold;">24</td>
+          <td style="text-align: center;">0</td>
+          <td style="text-align: center;">0</td>
+          <td style="text-align: center; font-weight: bold; color: #059669;">100%</td>
+          <td>Hadir penuh mendampingi kelas tajwid</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">3</td>
+          <td><strong>Ustadz Ahmad Fauzi, S.Pd</strong></td>
+          <td>Koord. Kesiswaan / Jilid 5-6</td>
+          <td style="text-align: center; font-weight: bold;">24</td>
+          <td style="text-align: center;">0</td>
+          <td style="text-align: center;">0</td>
+          <td style="text-align: center; font-weight: bold; color: #059669;">100%</td>
+          <td>Hadir tepat waktu dan piket tertib</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">4</td>
+          <td><strong>Ustadzah Fatimatuz Zahro, S.Pd</strong></td>
+          <td>Bendahara / Jilid 3-4</td>
+          <td style="text-align: center; font-weight: bold;">24</td>
+          <td style="text-align: center;">0</td>
+          <td style="text-align: center;">0</td>
+          <td style="text-align: center; font-weight: bold; color: #059669;">100%</td>
+          <td>Tertib pembukuan dan mengajar aktif</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">5</td>
+          <td><strong>Ustadzah Nurul Hidayati, S.Pd</strong></td>
+          <td>Sekretaris / Jilid 2</td>
+          <td style="text-align: center; font-weight: bold;">23</td>
+          <td style="text-align: center;">1</td>
+          <td style="text-align: center;">0</td>
+          <td style="text-align: center; font-weight: bold; color: #059669;">95.8%</td>
+          <td>Sakit flu 1 hari (ada ustadzah badal)</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">6</td>
+          <td><strong>Ustadzah Siti Rokhmah, A.Ma</strong></td>
+          <td>Koord. Sarpras / Jilid 1</td>
+          <td style="text-align: center; font-weight: bold;">24</td>
+          <td style="text-align: center;">0</td>
+          <td style="text-align: center;">0</td>
+          <td style="text-align: center; font-weight: bold; color: #059669;">100%</td>
+          <td>Hadir penuh membimbing santri dasar</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="ttd-box">
+      <div class="ttd-col">
+        <p>Mengetahui,<br><strong>Sekretaris Lembaga</strong></p>
+        <div class="ttd-space"></div>
+        <p><strong><u>Ustadzah Nurul Hidayati, S.Pd</u></strong></p>
+      </div>
+      <div class="ttd-col">
+        <p>Sidoarjo, 15 Juli 2026<br><strong>Kepala TPQ Muslimat NU AL-IKHLAS</strong></p>
+        <div class="ttd-space"></div>
+        <p><strong><u>Ustadzah Hj. Siti Aminah, S.Pd.I</u></strong><br><span style='font-size: 8pt; font-family: monospace;'>NIY. 19820514 201201 2 001</span></p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
