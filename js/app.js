@@ -2154,6 +2154,7 @@ function saveProfilForm(e) {
   store.institution.method = document.getElementById("prof-method").value.trim();
 
   saveAppStore(store);
+  syncToSqlBackend('/api/institution', 'POST', store.institution);
   showToast("Profil lembaga berhasil diperbarui! Seluruh kop surat tersinkronisasi.");
 }
 
@@ -2747,31 +2748,68 @@ function renderKepalaSubView(store) {
   `;
 }
 
+// Helper Canvas Resizer untuk optimasi Base64 Gambar Logo
+function optimizeImageToDataUrl(file, maxWidth, maxHeight, callback) {
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = new Image();
+    img.onload = function() {
+      let width = img.width;
+      let height = img.height;
+      if (width > maxWidth || height > maxHeight) {
+        if (width > height) {
+          height = Math.round((height * maxWidth) / width);
+          width = maxWidth;
+        } else {
+          width = Math.round((width * maxHeight) / height);
+          height = maxHeight;
+        }
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+      const isJpeg = file.type === 'image/jpeg' || file.type === 'image/jpg';
+      const dataUrl = canvas.toDataURL(isJpeg ? 'image/jpeg' : 'image/png', 0.9);
+      callback(dataUrl);
+    };
+    img.onerror = function() {
+      callback(e.target.result);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
 // Helper Upload & Preset Handler
 function handleLogoUpload(event, targetProp) {
   const file = event.target.files[0];
   if (!file) return;
-  if (file.size > 2 * 1024 * 1024) {
-    alert("Ukuran file gambar terlalu besar! Maksimal 2MB.");
+  if (file.size > 5 * 1024 * 1024) {
+    alert("Ukuran file gambar terlalu besar! Maksimal 5MB.");
     return;
   }
 
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const dataUrl = e.target.result;
+  optimizeImageToDataUrl(file, 400, 400, function(dataUrl) {
     const store = getAppStore();
     store.institution[targetProp] = dataUrl;
+    if (targetProp === 'logoLeft') store.institution.logoLeftType = 'custom';
+    if (targetProp === 'logoRight') store.institution.logoRightType = 'custom';
     saveAppStore(store);
-    showToast("Gambar berhasil diunggah & disimpan!");
+    syncToSqlBackend('/api/institution', 'POST', store.institution);
+    showToast("Gambar berhasil diunggah & disimpan permanen ke database!");
     renderDataInputView();
-  };
-  reader.readAsDataURL(file);
+  });
 }
 
 function clearCustomLogo(targetProp) {
   const store = getAppStore();
   store.institution[targetProp] = "";
+  if (targetProp === 'logoLeft') store.institution.logoLeftType = 'preset';
+  if (targetProp === 'logoRight') store.institution.logoRightType = 'preset';
   saveAppStore(store);
+  syncToSqlBackend('/api/institution', 'POST', store.institution);
   showToast("Logo dikembalikan ke simbol preset default.");
   renderDataInputView();
 }
@@ -2780,7 +2818,10 @@ function setLogoPreset(targetProp, preset) {
   const store = getAppStore();
   store.institution[targetProp] = "";
   store.institution[targetProp + "Preset"] = preset;
+  if (targetProp === 'logoLeft') store.institution.logoLeftType = 'preset';
+  if (targetProp === 'logoRight') store.institution.logoRightType = 'preset';
   saveAppStore(store);
+  syncToSqlBackend('/api/institution', 'POST', store.institution);
   renderDataInputView();
 }
 
@@ -2788,6 +2829,7 @@ function clearSignature() {
   const store = getAppStore();
   store.institution.signatureHeadmaster = "";
   saveAppStore(store);
+  syncToSqlBackend('/api/institution', 'POST', store.institution);
   showToast("Tanda tangan digital dihapus.");
   renderDataInputView();
 }
@@ -2796,6 +2838,7 @@ function clearStamp() {
   const store = getAppStore();
   store.institution.stampImage = "";
   saveAppStore(store);
+  syncToSqlBackend('/api/institution', 'POST', store.institution);
   showToast("Cap stempel dihapus.");
   renderDataInputView();
 }
@@ -2804,6 +2847,7 @@ function setKopLogoLayout(layout) {
   const store = getAppStore();
   store.institution.kopLogoLayout = layout;
   saveAppStore(store);
+  syncToSqlBackend('/api/institution', 'POST', store.institution);
   renderDataInputView();
   showToast("Mode logo KOP diatur: " + (layout === 'both' ? 'Dua Logo (Kiri & Kanan)' : layout === 'left' ? 'Hanya Logo Kiri (Kanan Kosong)' : layout === 'right' ? 'Hanya Logo Kanan (Kiri Kosong)' : 'Tanpa Logo (Teks Saja)'));
 }
@@ -2844,7 +2888,8 @@ function saveKopForm(e) {
   }
 
   saveAppStore(store);
-  showToast("Pengaturan KOP Surat berhasil disimpan & disinkronkan ke seluruh dokumen!");
+  syncToSqlBackend('/api/institution', 'POST', store.institution);
+  showToast("Pengaturan KOP Surat berhasil disimpan permanen ke database!");
   renderDataInputView();
 }
 
@@ -2867,7 +2912,8 @@ function saveKepalaForm(e) {
   store.institution.treasurer = document.getElementById("head-treasurer").value.trim();
 
   saveAppStore(store);
-  showToast("Data Kepala TPQ & Pimpinan berhasil diperbarui!");
+  syncToSqlBackend('/api/institution', 'POST', store.institution);
+  showToast("Data Kepala TPQ & Pimpinan berhasil diperbarui ke database!");
   renderDataInputView();
 }
 

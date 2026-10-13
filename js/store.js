@@ -833,7 +833,11 @@ function getAppStore() {
 }
 
 function saveAppStore(store) {
-  localStorage.setItem(STORE_KEY, JSON.stringify(store));
+  try {
+    localStorage.setItem(STORE_KEY, JSON.stringify(store));
+  } catch (e) {
+    console.warn('LocalStorage error saat menyimpan:', e);
+  }
 }
 
 function resetAppStoreToDefault() {
@@ -1080,7 +1084,31 @@ async function loadStoreFromSqlBackend() {
         
         // Merge seamlessly
         if (sqlData.institution && Object.keys(sqlData.institution).length > 0) {
-          current.institution = Object.assign({}, current.institution, sqlData.institution);
+          const mergedInst = Object.assign({}, current.institution, sqlData.institution);
+          // Pertahankan logo dan tanda tangan/stempel lokal jika backend SQL masih kosong
+          if (!sqlData.institution.logoLeft && current.institution.logoLeft) {
+            mergedInst.logoLeft = current.institution.logoLeft;
+            mergedInst.logoLeftType = current.institution.logoLeftType || 'custom';
+          }
+          if (!sqlData.institution.logoRight && current.institution.logoRight) {
+            mergedInst.logoRight = current.institution.logoRight;
+            mergedInst.logoRightType = current.institution.logoRightType || 'custom';
+          }
+          if (!sqlData.institution.signatureHeadmaster && current.institution.signatureHeadmaster) {
+            mergedInst.signatureHeadmaster = current.institution.signatureHeadmaster;
+          }
+          if (!sqlData.institution.stampImage && current.institution.stampImage) {
+            mergedInst.stampImage = current.institution.stampImage;
+          }
+          current.institution = mergedInst;
+
+          // Jika lokal memiliki logo kustom tapi backend belum, sinkronkan otomatis ke SQL
+          if ((current.institution.logoLeft && !sqlData.institution.logoLeft) ||
+              (current.institution.logoRight && !sqlData.institution.logoRight) ||
+              (current.institution.signatureHeadmaster && !sqlData.institution.signatureHeadmaster) ||
+              (current.institution.stampImage && !sqlData.institution.stampImage)) {
+            syncToSqlBackend('/api/institution', 'POST', current.institution);
+          }
         }
         if (sqlData.santri && sqlData.santri.length > 0) {
           current.santri = sqlData.santri;
