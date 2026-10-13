@@ -231,15 +231,19 @@ Semua dokumen bukti fisik disusun rapi ke dalam **6 buah Map Odner Bantex 7.5 cm
 
 ## 8. ARSITEKTUR KODE SUMBER & STRUKTUR FILE APLIKASI WEB
 
-Aplikasi web dirancang dengan arsitektur **Hybrid Offline-First Full-Stack Application** berstandar modern berbasis HTML5, Tailwind CSS, Vanilla JavaScript, serta sistem penyimpanan ganda (**Dual Persistence**): Basis Data Relasional SQL permanen di disk (**SQLite 3** & Auto-Generated **SQL Dump**) yang terhubung melalui REST API Python terintegrasi (`server.py`), dilengkapi failover otomatis ke peramban (**LocalStorage** `tpq_alikhlas_db_v3`).
+Aplikasi web dirancang dengan arsitektur **Hybrid Offline-First Full-Stack Application** berstandar modern berbasis HTML5, Tailwind CSS, Vanilla JavaScript, serta sistem penyimpanan ganda (**Dual Persistence**): Basis Data Relasional SQL permanen di disk (**SQLite 3 WAL Mode** & Auto-Generated **SQL Dump**) yang terhubung melalui REST API Python terintegrasi (`server.py`), dilengkapi failover otomatis ke peramban (**LocalStorage** `tpq_alikhlas_db_v3`).
+
+Repository Git Resmi: `https://github.com/kajurtkjsmkbp-hub/tpq-al-ikhlas-balamoa` (Branch: `main`)
 
 ```
-C:\Users\Komputer Vintage\Music\TPQ\
+tpq-al-ikhlas-balamoa/
 │
 ├── index.html                                        (Portal Antarmuka Pengguna Utama / Single Page App)
 ├── INGATAN.md                                        (Master Knowledge Base & Ingatan Permanen Sistem)
-├── README.md                                         (Petunjuk Ringkas Penggunaan Aplikasi)
-├── server.py                                         (Server Web Python & REST API SQLite Tanpa Dependensi Luar)
+├── README.md                                         (Petunjuk Ringkas Penggunaan & Panduan LXC)
+├── PANDUAN_PROXMOX_LXC.md                            (Panduan Lengkap Instalasi & Pemeliharaan LXC Proxmox)
+├── .gitignore                                        (Konfigurasi Pengecualian File Sementara & Cache)
+├── server.py                                         (Server Web Python & REST API SQLite WAL Mode)
 │
 ├── database/                                         (Folder Khusus Basis Data SQL Relasional Permanen)
 │   ├── schema.sql                                    (Skema DDL SQL Relasional: 6 Tabel Berelasi)
@@ -617,7 +621,113 @@ Server akan menyajikan portal di tautan: `http://localhost:8080/`.
    - Pilih file `database/tpq_alikhlas.sql`, lalu klik tombol **Import / Kirim**. Seluruh tabel dan data akan tercipta secara instan.
 3. **Menggunakan GUI Database Manager (DBeaver / DB Browser for SQLite)**:
    - Buka aplikasi **DB Browser for SQLite**.
-   - Pilih **Open Database** -> arahkan ke file `C:\Users\Komputer Vintage\Music\TPQ\database\tpq_alikhlas.db`.
+   - Pilih **Open Database** -> arahkan ke file `database/tpq_alikhlas.db`.
    - Anda dapat melihat, mencari, atau mengedit data secara visual menggunakan antarmuka grafis.
+
+---
+
+### 13.4. Panduan Deployment & Pemeliharaan di Proxmox VE (LXC Container)
+
+Aplikasi ini menggunakan modul murni **Python 3 Standard Library** (`http.server`, `sqlite3`, `json`, `urllib`), sehingga sangat ringan (*ultra-lightweight*), menggunakan RAM rata-rata hanya ~30 MB, serta tidak membutuhkan kompilasi atau instalasi paket tambahan (`pip install`).
+
+* **Repository GitHub Resmi**: `https://github.com/kajurtkjsmkbp-hub/tpq-al-ikhlas-balamoa` (Branch: `main`)
+* **Spesifikasi Minimal Container (LXC)**:
+  - Template OS: Debian 12 (Bookworm) atau Ubuntu 22.04 / 24.04 LTS
+  - CPU: 1 vCPU (Beban CPU < 1%)
+  - RAM: 512 MB – 1 GB
+  - Disk: 4 GB – 8 GB
+  - Jaringan: Bridge Mode (`vmbr0`), DHCP atau IP Statis
+
+#### 13.4.1. Langkah Instalasi Standar:
+```bash
+# 1. Update paket container
+apt update && apt upgrade -y
+apt install -y git python3 curl
+
+# 2. Clone repository ke /opt
+cd /opt
+git clone https://github.com/kajurtkjsmkbp-hub/tpq-al-ikhlas-balamoa.git
+cd /opt/tpq-al-ikhlas-balamoa
+
+# 3. Pasang Systemd Service (Auto-Start saat Booting)
+cat << 'EOF' > /etc/systemd/system/tpq.service
+[Unit]
+Description=Server TPQ Muslimat NU Al-Ikhlas Balamoa
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/tpq-al-ikhlas-balamoa
+ExecStart=/usr/bin/python3 /opt/tpq-al-ikhlas-balamoa/server.py 8080
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# 4. Aktifkan dan jalankan service
+systemctl daemon-reload
+systemctl enable tpq
+systemctl start tpq
+systemctl status tpq
+```
+
+#### 13.4.2. Perintah Pembaruan Manual (Update di LXC):
+Jalankan perintah ini di Console LXC setiap kali kode di GitHub diperbarui:
+
+* **Update Cepat (1 Baris)**:
+  ```bash
+  cd /opt/tpq-al-ikhlas-balamoa && systemctl stop tpq && git pull origin main && systemctl start tpq
+  ```
+* **Update Aman (Dengan Backup Database Otomatis)**:
+  ```bash
+  cd /opt/tpq-al-ikhlas-balamoa
+  systemctl stop tpq
+  cp database/tpq_alikhlas.db database/tpq_alikhlas_backup_$(date +%Y%m%d_%H%M%S).db
+  git pull origin main
+  systemctl start tpq
+  systemctl status tpq
+  ```
+
+#### 13.4.3. Penanganan Troubleshooting Proxmox Terverifikasi:
+1. **Error `CT is locked (snapshot) (500)`**:
+   - Penyebab: Proses snapshot/backup terhenti atau dibatalkan di tengah jalan sehingga lock flag belum terlepas.
+   - Solusi: Buka Shell host Proxmox node, lalu jalankan `pct unlock <VMID>` (contoh: `pct unlock 120`).
+2. **Error `Script exited with status 16 / cgroups v2 busy`**:
+   - Penyebab: Ada sisa proses orphan yang masih tertahan di cgroup container.
+   - Solusi: Di Shell Proxmox host jalankan:
+     ```bash
+     echo 1 > /sys/fs/cgroup/lxc/<VMID>/cgroup.kill
+     rmdir /sys/fs/cgroup/lxc/<VMID>/ns/.lxc 2>/dev/null
+     pct start <VMID>
+     ```
+3. **Layar Hitam pada Console Proxmox LXC**:
+   - Penyebab: TTY belum menerima sinyal keypress.
+   - Solusi: Klik area hitam lalu tekan `Enter` 1-2 kali, atau masuk langsung dari shell Proxmox host tanpa password via `pct enter <VMID>`.
+
+---
+
+### 13.5. Arsitektur SQLite WAL Mode, Image Optimizer Canvas & Two-Way Sync
+
+#### 13.5.1. Akar Masalah Logo & Alamat Ter-Reset Saat Refresh:
+Sebelumnya terjadi anomali di mana pengguna mengunggah logo baru dan memperbarui alamat lembaga di antarmuka web, namun saat browser di-*refresh* atau ditutup, logo dan alamat kembali ke kondisi awal. Pelacakan log menemukan:
+1. SQLite berjalan dalam mode jurnal standar (`delete`) tanpa *WAL mode* dan tanpa *busy timeout*.
+2. Saat form disimpan, browser mengirim `POST /api/institution` dan `POST /api/sync` bersamaan dengan proses polling pembacaan data `/api/status`, menyebabkan galat `sqlite3.OperationalError: database is locked (HTTP 500)`.
+3. Akibatnya data gagal tersimpan ke file database di disk server.
+4. Saat browser di-*refresh*, `loadStoreFromSqlBackend()` memuat data lama dari server dan menimpa (*overwrite*) data lokal browser.
+
+#### 13.5.2. Solusi Komprehensif Versi 3.5:
+1. **Pengaktifan SQLite WAL Mode (`PRAGMA journal_mode = WAL`)**:
+   - Mengizinkan pembacaan (*readers*) dan penulisan (*writers*) berjalan simultan tanpa lock contention.
+   - Ditambahkan `PRAGMA busy_timeout = 30000` (toleransi tunggu hingga 30 detik) pada `server.py` dan database.
+   - Seluruh operasi simpan kini terjamin merespons dengan `HTTP 200 OK`.
+2. **Auto Canvas Image Resizer (`optimizeImageToDataUrl`)**:
+   - File gambar logo mentah dari kamera/desain otomatis diubah ke resolusi optimal 400×400 px transparan PNG/JPEG (~30 s.d. 80 KB).
+   - Menghindari masalah kelebihan kuota memori browser (*localStorage quota limit*).
+3. **Sinkronisasi Dua Arah Berbasis Waktu (*Two-Way Timestamp Sync*)**:
+   - Setiap mutasi profil, KOP, atau logo membubuhkan timestamp `updatedAt`.
+   - Pada saat halaman di-*refresh*, sistem membandingkan timestamp data lokal vs data server. Jika data lokal lebih baru daripada data di server, server **dilarang menimpa data browser**, melainkan data browser yang secara otomatis memperbarui server.
 
 
